@@ -19,3 +19,4 @@ homebrew_cask_apps:
   # - safeincloud-password-manager
   - slack
   - sublime-text
+  - wavebox
