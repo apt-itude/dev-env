@@ -13,7 +13,7 @@ homebrew_cask_appdir: /Applications
 
 homebrew_cask_apps:
   # - evernote
-  - font-inconsolata
+  - font-inconsolata-dz
   # - google-chrome
   - iterm2
   # - safeincloud-password-manager

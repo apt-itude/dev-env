@@ -1,0 +1,17 @@
+---
+git_config_global:
+  alias.br: branch --list
+  alias.co: checkout
+  alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
+  alias.st: status --ignore-submodules=dirty
+  core.excludesfile: ~/.gitignore
+  user.email: aptbosox@gmail.com
+  user.name: Alex Thompson
+
+git_config_macos:
+  # TODO move this to a sublime-text role
+  diff.tool: sublimerge
+  difftool.sublimerge.cmd: "subl -n --wait \"$LOCAL\" \"$REMOTE\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\""
+  merge.tool: sublimerge
+  mergetool.sublimerge.cmd: subl -n --wait "$REMOTE" "$BASE" "$LOCAL" "$MERGED" --command "sublimerge_diff_views"
+  mergetool.sublimerge.truseExitCode: False
