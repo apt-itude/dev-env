@@ -12,6 +12,6 @@ if [ -f ~/.bash_prompt ]; then
     . ~/.bash_prompt
 fi
 
-if [ -f ~/.dircolors ]; then
+if [ -x "$(command -v dircolors)" ] && [ -f ~/.dircolors ]; then
     eval `dircolors -b ~/.dircolors`
 fi
