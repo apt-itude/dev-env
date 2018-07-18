@@ -10,6 +10,7 @@ git_config_global:
 
 git_config_macos:
   # TODO move this to a sublime-text role
+  core.editor: subl -n --wait
   diff.tool: sublimerge
   difftool.sublimerge.cmd: "subl -n --wait \"$LOCAL\" \"$REMOTE\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\""
   merge.tool: sublimerge
