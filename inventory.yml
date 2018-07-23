@@ -2,6 +2,28 @@
   hosts:
     localhost:
       ansible_connection: local
+
+      git_config_global:
+
+        # Common options
+        alias.br: branch --list
+        alias.co: checkout
+        alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
+        alias.st: status --ignore-submodules=dirty
+        user.email: aptbosox@gmail.com
+        user.name: Alex Thompson
+
+        # Sublime setup
+        core.editor: subl -n --wait
+        diff.tool: sublimerge
+        difftool.sublimerge.cmd: "subl -n --wait \"$LOCAL\" \"$REMOTE\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\""
+        merge.tool: sublimerge
+        mergetool.sublimerge.cmd: subl -n --wait "$REMOTE" "$BASE" "$LOCAL" "$MERGED" --command "sublimerge_diff_views"
+        mergetool.sublimerge.truseExitCode: False
+
+      git_ignore_patterns_global:
+        - "*.sublime-*"
+
       pyenv_installed_versions:
         - 2.7.15
         - 3.6.6

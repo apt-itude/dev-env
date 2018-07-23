@@ -5,5 +5,7 @@
       tags: ['apps']
     - role: dotfiles
       tags: ['config']
+    - role: git
+      tags: ['git']
     - role: pyenv
       tags: ['pyenv']

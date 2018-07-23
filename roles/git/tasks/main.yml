@@ -1,0 +1,23 @@
+---
+- include: install.yml
+
+- name: Ensuring global git configuration is applied
+  git_config:
+    name: "{{ item.key }}"
+    scope: global
+    value: "{{ item.value }}"
+  loop: "{{ git_config_global|dict2items }}"
+
+- name: Ensuring global gitignore settings are applied
+  lineinfile:
+    path: ~/.gitignore
+    line: "{{ item }}"
+    state: present
+    create: yes
+  loop: "{{ git_ignore_patterns_global }}"
+
+- name: Ensuring global gitignore is configured
+  git_config:
+    name: core.excludesfile
+    scope: global
+    value: ~/.gitignore

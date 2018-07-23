@@ -9,20 +9,12 @@
     - .bash_aliases
     - .bash_prompt
     - .dircolors
-    - .gitignore
 
 - name: Ensuring git-prompt exist
   get_url:
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
     dest: ~/.git-prompt
     mode: 0400
-
-- name: Ensuring global git configuration is applied
-  git_config:
-    name: "{{ item.key }}"
-    scope: global
-    value: "{{ item.value }}"
-  loop: "{{ git_config_global|dict2items }}"
 
 - name: Applying MacOS-specific configuration
   block:
@@ -33,12 +25,5 @@
       loop:
         - .bashrc.macos
         - .bash_aliases.macos
-
-    - name: Ensuring MacOS-specific git configuration is applied
-      git_config:
-        name: "{{ item.key }}"
-        scope: global
-        value: "{{ item.value }}"
-      loop: "{{ git_config_macos|dict2items }}"
 
   when: ansible_os_family == "Darwin"

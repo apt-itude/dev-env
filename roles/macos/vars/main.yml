@@ -2,7 +2,6 @@
 homebrew_installed_packages:
   - bash-completion
   - coreutils
-  - git
 
 homebrew_taps:
   - homebrew/core
