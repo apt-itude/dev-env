@@ -1,0 +1,20 @@
+---
+- include: install.yml
+
+- name: Installing versions
+  command: pyenv install "{{ item }}"
+  args:
+    creates: "{{ pyenv_root }}/versions/{{ item }}"
+  loop: "{{ pyenv_installed_versions }}"
+
+- name: Setting versions
+  template:
+    src: versions.j2
+    dest: "{{ pyenv_root }}/version"
+  vars:
+    versions: "{{ pyenv_global_versions }}"
+
+- name: Ensuring .bash_profile.pyenv exists
+  template:
+    src: .bash_profile.pyenv.j2
+    dest: ~/.bash_profile.pyenv

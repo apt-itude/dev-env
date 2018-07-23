@@ -1,0 +1,11 @@
+---
+- name: Ensuring pyenv is installed
+  homebrew:
+    name: pyenv
+    state: latest
+
+- name: Ensuring pyenv-virtualenv is installed
+  homebrew:
+    name: pyenv-virtualenv
+    state: latest
+  when: pyenv_virtualenv

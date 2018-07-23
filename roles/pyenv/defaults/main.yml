@@ -1,0 +1,7 @@
+---
+pyenv_root: $HOME/.pyenv
+
+pyenv_installed_versions: []
+pyenv_global_versions: []
+
+pyenv_virtualenv: true

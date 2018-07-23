@@ -1,5 +1,9 @@
 ---
-- hosts: localhost
+- hosts: 128-mac
   roles:
-    - macos
-    - dotfiles
+    - role: macos
+      tags: ['apps']
+    - role: dotfiles
+      tags: ['config']
+    - role: pyenv
+      tags: ['pyenv']
