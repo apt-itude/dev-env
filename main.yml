@@ -1,10 +1,10 @@
 ---
 - hosts: 128-mac
   roles:
-    - role: macos
-      tags: ['apps']
+    - role: homebrew
+      tags: ['homebrew']
     - role: dotfiles
-      tags: ['config']
+      tags: ['dotfiles']
     - role: git
       tags: ['git']
     - role: pyenv

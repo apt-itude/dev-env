@@ -3,6 +3,23 @@
     localhost:
       ansible_connection: local
 
+      homebrew_taps:
+        - homebrew/cask-fonts
+
+      homebrew_formulae:
+        - bash-completion
+        - coreutils
+
+      homebrew_casks:
+        # - evernote
+        - font-inconsolata-dz
+        # - google-chrome
+        - iterm2
+        # - safeincloud-password-manager
+        - slack
+        - sublime-text
+        - wavebox
+
       git_config_global:
 
         # Common options
