@@ -1,5 +1,9 @@
 ---
-- name: Configure taps
+- name: Update Homebrew
+  homebrew:
+    update_homebrew: true
+
+- name: Configure Taps
   homebrew_tap:
     tap: "{{ item }}"
     state: present
