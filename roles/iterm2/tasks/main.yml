@@ -1,0 +1,11 @@
+---
+- name: Install iTerm2
+  homebrew_cask:
+    name: iterm2
+    state: present
+
+- name: Install Dynamic Profiles
+  git:
+    repo: "{{ iterm2_profiles_repo }}"
+    dest: "~/Library/Application Support/iTerm2/DynamicProfiles/"
+  when: iterm2_profiles_repo is defined

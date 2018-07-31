@@ -9,3 +9,5 @@
       tags: ['git']
     - role: pyenv
       tags: ['pyenv']
+    - role: iterm2
+      tags: ['iterm2']
