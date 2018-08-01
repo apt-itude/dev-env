@@ -15,6 +15,7 @@
         - font-inconsolata-dz
         # - google-chrome
         # - safeincloud-password-manager
+        - rocket
         - slack
         - sublime-text
         - wavebox
