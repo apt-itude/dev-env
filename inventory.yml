@@ -18,6 +18,7 @@
         - rocket
         - slack
         - sublime-text
+        - ticktick
         - wavebox
 
       git_config_global:
@@ -40,6 +41,7 @@
 
       git_ignore_patterns_global:
         - "*.sublime-*"
+        - ".python-version"
 
       pyenv_installed_versions:
         - 2.7.15
