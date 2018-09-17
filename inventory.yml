@@ -51,4 +51,9 @@
         - 3.7.0
         - 2.7.15
 
+      rbenv_installed_versions:
+        - 2.5.1
+      rbenv_global_versions:
+        - 2.5.1
+
       iterm2_profiles_repo: https://github.com/aptbosox/iterm2-profiles

@@ -1,0 +1,5 @@
+---
+rbenv_root: "{{ ansible_env.HOME }}/.rbenv"
+
+rbenv_installed_versions: []
+rbenv_global_versions: []

@@ -1,0 +1,20 @@
+---
+- include: install.yml
+
+- name: Installing versions
+  command: rbenv install "{{ item }}"
+  args:
+    creates: "{{ rbenv_root }}/versions/{{ item }}"
+  loop: "{{ rbenv_installed_versions }}"
+
+- name: Setting versions
+  template:
+    src: versions.j2
+    dest: "{{ rbenv_root }}/version"
+  vars:
+    versions: "{{ rbenv_global_versions }}"
+
+- name: Ensuring .bash_profile.rbenv exists
+  template:
+    src: .bash_profile.rbenv.j2
+    dest: ~/.bash_profile.rbenv

@@ -1,0 +1,5 @@
+---
+- name: Ensuring rbenv is installed
+  homebrew:
+    name: rbenv
+    state: latest
