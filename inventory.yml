@@ -13,8 +13,9 @@
       homebrew_casks:
         # - evernote
         - font-inconsolata-dz
-        # - google-chrome
-        # - safeincloud-password-manager
+        - google-chrome
+        - macdown
+        - safeincloud-password-manager
         - rocket
         - slack
         - sublime-text
