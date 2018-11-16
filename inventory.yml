@@ -27,6 +27,7 @@
         # Common options
         alias.br: branch --list
         alias.co: checkout
+        alias.peek: "!f() { git diff HEAD~${1:-1}; }; f"
         alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
         alias.st: status --ignore-submodules=dirty
         user.email: aptbosox@gmail.com
