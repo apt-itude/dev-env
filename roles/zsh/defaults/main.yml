@@ -1,0 +1,4 @@
+---
+zshrc_dir: ~/.zshrc.d
+zshenv_dir: ~/.zshenv.d
+zsh_aliases: {}

@@ -1,0 +1,10 @@
+---
+- name: Install zplug
+  git:
+    repo: 'https://github.com/zplug/zplug'
+    dest: "{{ zplug_home }}"
+
+- name: Configure zplug
+  template:
+    src: zshrc.d/zplug.j2
+    dest: "{{ zshrc_dir }}/zplug"

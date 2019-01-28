@@ -1,0 +1,9 @@
+# Load config
+for subrc in {{ zshrc_dir }}/*(.N); do
+    [ -f "$subrc" ] && source "$subrc"
+done
+
+# Load aliases
+if [ -f ~/.zsh_aliases ]; then
+    source ~/.zsh_aliases
+fi

@@ -1,0 +1,4 @@
+# Load environment
+for subenv in {{ zshenv_dir }}/*(.N); do
+    [ -f "$subenv" ] && source "$subenv"
+done
