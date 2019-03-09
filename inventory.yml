@@ -9,6 +9,7 @@
       homebrew_formulae:
         - bash-completion
         - coreutils
+        - fff
 
       homebrew_casks:
         # - evernote
