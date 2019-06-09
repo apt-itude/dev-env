@@ -43,6 +43,7 @@
         mergetool.sublimerge.trustExitCode: False
 
       git_ignore_patterns_global:
+        - "*.code-workspace"
         - "*.sublime-*"
         - ".python-version"
 
