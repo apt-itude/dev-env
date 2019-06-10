@@ -1,0 +1,6 @@
+---
+zsh_user: "{{ ansible_user_id }}"
+zsh_bin_path: /usr/bin/zsh
+zshrc_dir: ~/.zshrc.d
+zshenv_dir: ~/.zshenv.d
+zsh_aliases: {}

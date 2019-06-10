@@ -23,8 +23,32 @@
         - ticktick
         - wavebox
 
-      git_config_global:
+      zsh_aliases:
+        ls: ls --color=auto
+        ll: ls -lsF
+        la: ls -lsaF
+        grep: grep --color=auto
+        cl: clear
+        show-files: defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app
+        hide-files: defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app
 
+      zplug_packages:
+        - name: romkatv/dotfiles-public
+          from: github
+          use: .purepower
+        - name: romkatv/powerlevel10k
+          use: powerlevel10k.zsh-theme
+          as: theme
+        - name: zsh-users/zsh-completions
+        - name: zdharma/fast-syntax-highlighting
+        - name: bazelbuild/bazel
+          use: scripts/zsh_completion/
+        - name: peterhurford/up.zsh
+
+      zplug_variables:
+        DEFAULT_USER: athompson
+
+      git_config_global:
         # Common options
         alias.br: branch --list
         alias.co: checkout
@@ -53,6 +77,7 @@
         - 3.7.0
       pyenv_global_versions:
         - 3.7.0
+        - 3.6.6
         - 2.7.15
 
       rbenv_installed_versions:

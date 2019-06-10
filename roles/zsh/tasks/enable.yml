@@ -1,0 +1,11 @@
+---
+- name: Set ZSH path on macOS
+  set_fact:
+    zsh_bin_path: /usr/local/bin/zsh
+  when: ansible_os_family == "Darwin"
+  
+- name: Set user shell to ZSH
+  user:
+    name: "{{ zsh_user }}"
+    shell: "{{ zsh_bin_path }}"
+  become: yes

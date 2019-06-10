@@ -1,0 +1,21 @@
+export ZPLUG_HOME={{ zplug_home }}
+source $ZPLUG_HOME/init.zsh
+
+{% for key, value in zplug_variables.items() %}
+{{ key }}={{ value }}
+{% endfor %}
+
+{% for package in zplug_packages %}
+zplug "{{ package['name'] }}"{% for key, value in package.items() if key != 'name' %}, {{ key }}:{{ value }}{% endfor %}
+
+{% endfor %}
+
+# Install and load plugins
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load

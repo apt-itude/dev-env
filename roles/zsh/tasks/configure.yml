@@ -1,0 +1,26 @@
+---
+- name: Set up ZSH environment
+  template:
+    src: zshenv.j2
+    dest: ~/.zshenv
+
+- name: Set up ZSH config
+  template:
+    src: zshrc.j2
+    dest: ~/.zshrc
+
+- name: Create ZSH config directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  loop:
+    - "{{ zshenv_dir }}"
+    - "{{ zshrc_dir }}"
+
+- name: Configure ZSH aliases
+  template:
+    src: zsh_aliases.j2
+    dest: ~/.zsh_aliases
+  vars:
+    aliases: "{{ zsh_aliases }}"

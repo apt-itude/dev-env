@@ -14,7 +14,7 @@
   vars:
     versions: "{{ pyenv_global_versions }}"
 
-- name: Ensuring .bash_profile.pyenv exists
+- name: Enabling pyenv in ZSH
   template:
-    src: .bash_profile.pyenv.j2
-    dest: ~/.bash_profile.pyenv
+    src: zshenv.d/pyenv.j2
+    dest: "{{ zshenv_dir }}/pyenv"
