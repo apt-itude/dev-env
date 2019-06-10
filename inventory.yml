@@ -12,16 +12,13 @@
         - fff
 
       homebrew_casks:
-        # - evernote
         - font-inconsolata-dz
         - google-chrome
-        - macdown
-        - safeincloud-password-manager
         - rocket
-        - slack
+        - safeincloud-password-manager
+        - station
         - sublime-text
-        - ticktick
-        - wavebox
+        - visual-studio-code
 
       zsh_aliases:
         ls: ls --color=auto
