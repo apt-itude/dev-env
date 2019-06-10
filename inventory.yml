@@ -32,22 +32,20 @@
         hide-files: defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app
 
       zplug_packages:
-        - name: bhilburn/powerlevel9k
+        - name: romkatv/dotfiles-public
+          from: github
+          use: .purepower
+        - name: romkatv/powerlevel10k
+          use: powerlevel10k.zsh-theme
           as: theme
         - name: zsh-users/zsh-completions
         - name: zdharma/fast-syntax-highlighting
         - name: bazelbuild/bazel
           use: scripts/zsh_completion/
         - name: peterhurford/up.zsh
-          as: command
 
       zplug_variables:
         DEFAULT_USER: athompson
-        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS: (context dir pyenv vcs)
-        POWERLEVEL9K_PROMPT_ON_NEWLINE: "true"
-        POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX: ""
-        POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX: "'↳ '"
-        POWERLEVEL9K_VCS_GIT_HOOKS: (vcs-detect-changes git-remotebranch)
 
       git_config_global:
         # Common options
