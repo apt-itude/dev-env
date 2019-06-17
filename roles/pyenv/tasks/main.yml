@@ -17,4 +17,4 @@
 - name: Enabling pyenv in ZSH
   template:
     src: zshenv.d/pyenv.j2
-    dest: "{{ zshenv_dir }}/pyenv"
+    dest: "{{ zshrc_dir }}/pyenv"
