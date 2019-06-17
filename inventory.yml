@@ -69,13 +69,14 @@
         - ".python-version"
 
       pyenv_installed_versions:
-        - 2.7.15
+        - 2.7.16
         - 3.6.6
         - 3.7.0
+
       pyenv_global_versions:
         - 3.7.0
         - 3.6.6
-        - 2.7.15
+        - 2.7.16
 
       rbenv_installed_versions:
         - 2.5.1
