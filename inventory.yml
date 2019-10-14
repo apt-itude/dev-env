@@ -1,86 +1,78 @@
-128-mac:
-  hosts:
-    localhost:
-      ansible_connection: local
+all:
+  vars:
+    git_config_global:
+      # Common options
+      alias.br: branch --list
+      alias.co: checkout
+      alias.peek: "!f() { git diff HEAD~${1:-1}; }; f"
+      alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
+      alias.st: status --ignore-submodules=dirty
+      user.email: aptbosox@gmail.com
+      user.name: Alex Thompson
 
-      homebrew_taps:
-        - homebrew/cask-fonts
+      # Sublime setup
+      core.editor: subl -n --wait
+      diff.tool: sublimerge
+      difftool.sublimerge.cmd: "subl -n --wait \"$LOCAL\" \"$REMOTE\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\""
+      merge.tool: sublimerge
+      mergetool.sublimerge.cmd: subl -n --wait "$REMOTE" "$BASE" "$LOCAL" "$MERGED" --command "sublimerge_diff_views"
+      mergetool.sublimerge.trustExitCode: False
 
-      homebrew_formulae:
-        - bash-completion
-        - coreutils
-        - fff
+    git_ignore_patterns_global:
+      - "*.sublime-*"
+      - ".python-version"
 
-      homebrew_casks:
-        - font-inconsolata-dz
-        - google-chrome
-        - rocket
-        - safeincloud-password-manager
-        - station
-        - sublime-text
-        - visual-studio-code
+    iterm2_profiles_repo: https://github.com/aptbosox/iterm2-profiles
 
-      zsh_aliases:
-        ls: ls --color=auto
-        ll: ls -lsF
-        la: ls -lsaF
-        grep: grep --color=auto
-        cl: clear
-        show-files: defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app
-        hide-files: defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app
+    pyenv_installed_versions:
+      - 3.7.0
+      - 2.7.16
 
-      zplug_packages:
-        - name: romkatv/dotfiles-public
-          from: github
-          use: .purepower
-        - name: romkatv/powerlevel10k
-          use: powerlevel10k.zsh-theme
-          as: theme
-        - name: zsh-users/zsh-completions
-        - name: zdharma/fast-syntax-highlighting
-        - name: bazelbuild/bazel
-          use: scripts/zsh_completion/
-        - name: peterhurford/up.zsh
+    pyenv_global_versions:
+      - 3.7.0
+      - 2.7.16
 
-      zplug_variables:
-        DEFAULT_USER: athompson
+    zplug_packages:
+      - name: romkatv/powerlevel10k
+        use: powerlevel10k.zsh-theme
+        as: theme
+      - name: zsh-users/zsh-completions
+      - name: zdharma/fast-syntax-highlighting
+      - name: peterhurford/up.zsh
 
-      git_config_global:
-        # Common options
-        alias.br: branch --list
-        alias.co: checkout
-        alias.peek: "!f() { git diff HEAD~${1:-1}; }; f"
-        alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
-        alias.st: status --ignore-submodules=dirty
-        user.email: aptbosox@gmail.com
-        user.name: Alex Thompson
+    zplug_variables:
+      DEFAULT_USER: athompson
 
-        # Sublime setup
-        core.editor: subl -n --wait
-        diff.tool: sublimerge
-        difftool.sublimerge.cmd: "subl -n --wait \"$LOCAL\" \"$REMOTE\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\""
-        merge.tool: sublimerge
-        mergetool.sublimerge.cmd: subl -n --wait "$REMOTE" "$BASE" "$LOCAL" "$MERGED" --command "sublimerge_diff_views"
-        mergetool.sublimerge.trustExitCode: False
+    zsh_aliases:
+      ls: ls --color=auto
+      ll: ls -lsF
+      la: ls -lsaF
+      grep: grep --color=auto
+      cl: clear
 
-      git_ignore_patterns_global:
-        - "*.code-workspace"
-        - "*.sublime-*"
-        - ".python-version"
+  children:
+    macs:
+      vars:
+        homebrew_taps:
+          - homebrew/cask-fonts
 
-      pyenv_installed_versions:
-        - 2.7.16
-        - 3.6.6
-        - 3.7.0
+        homebrew_formulae:
+          - coreutils
+          - fff
 
-      pyenv_global_versions:
-        - 3.7.0
-        - 3.6.6
-        - 2.7.16
+        homebrew_casks:
+          - font-inconsolatago-nerd-font-mono
+          - google-chrome
+          - rocket
+          - safeincloud-password-manager
+          - station
+          - sublime-text
 
-      rbenv_installed_versions:
-        - 2.5.1
-      rbenv_global_versions:
-        - 2.5.1
+        # TODO figure out how to extend this for sub-group
+        # zsh_aliases:
+        #   show-files: defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app
+        #   hide-files: defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app
 
-      iterm2_profiles_repo: https://github.com/aptbosox/iterm2-profiles
+      hosts:
+        localhost:
+          ansible_connection: local
