@@ -62,6 +62,7 @@ all:
 
         homebrew_casks:
           - font-inconsolatago-nerd-font-mono
+          - google-backup-and-sync
           - google-chrome
           - rocket
           - safeincloud-password-manager
