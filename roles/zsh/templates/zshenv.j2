@@ -1,9 +1,0 @@
-# Load base profile
-if [ -f "/etc/profile" ]; then
-    source "/etc/profile"
-fi
-
-# Load custom environment
-for subenv in {{ zshenv_dir }}/*(.N); do
-    [ -f "$subenv" ] && source "$subenv"
-done

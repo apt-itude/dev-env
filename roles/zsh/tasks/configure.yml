@@ -1,13 +1,29 @@
 ---
-- name: Set up ZSH environment
-  template:
-    src: zshenv.j2
-    dest: ~/.zshenv
+- name: Ensure files in .zshenv.d get sourced
+  blockinfile:
+    path: ~/.zshenv
+    block: |
+      if [ -f "/etc/profile" ]; then
+          source "/etc/profile"
+      fi
 
-- name: Set up ZSH config
-  template:
-    src: zshrc.j2
-    dest: ~/.zshrc
+      for subrc in {{ zshenv_dir }}/*(.N); do
+          [ -f "$subrc" ] && source "$subrc"
+      done
+    insertbefore: BOF
+    marker: "# {mark} BLOCK MANAGED BY DEV-ENV VIA ANSIBLE"
+    create: true
+
+- name: Ensure files in .zshrc.d get sourced
+  blockinfile:
+    path: ~/.zshrc
+    block: |
+      for subrc in {{ zshrc_dir }}/*(.N); do
+          [ -f "$subrc" ] && source "$subrc"
+      done
+    insertbefore: BOF
+    marker: "# {mark} BLOCK MANAGED BY DEV-ENV VIA ANSIBLE"
+    create: true
 
 - name: Create ZSH config directories
   file:
@@ -20,7 +36,7 @@
 
 - name: Configure ZSH aliases
   template:
-    src: zsh_aliases.j2
-    dest: ~/.zsh_aliases
+    src: aliases.j2
+    dest: "{{ zshrc_dir }}/aliases"
   vars:
     aliases: "{{ zsh_aliases }}"
