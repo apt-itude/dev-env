@@ -36,6 +36,7 @@ all:
       - name: romkatv/powerlevel10k
         use: powerlevel10k.zsh-theme
         as: theme
+      - name: apt-itude/p10k-config
       - name: zsh-users/zsh-completions
       - name: zdharma/fast-syntax-highlighting
       - name: peterhurford/up.zsh
