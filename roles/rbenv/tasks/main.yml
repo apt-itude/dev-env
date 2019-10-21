@@ -14,7 +14,7 @@
   vars:
     versions: "{{ rbenv_global_versions }}"
 
-- name: Ensuring .bash_profile.rbenv exists
+- name: Enabling rbenv in ZSH
   template:
-    src: .bash_profile.rbenv.j2
-    dest: ~/.bash_profile.rbenv
+    src: zshrc.d/rbenv.j2
+    dest: "{{ zshrc_dir }}/rbenv"

@@ -32,6 +32,12 @@ all:
       - 3.7.0
       - 2.7.16
 
+    rbenv_installed_versions:
+      - 2.6.5
+
+    rbenv_global_versions:
+      - 2.6.5
+
     zplug_packages:
       - name: romkatv/powerlevel10k
         use: powerlevel10k.zsh-theme

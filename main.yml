@@ -11,6 +11,8 @@
       tags: ['git']
     - role: pyenv
       tags: ['pyenv']
+    - role: rbenv
+      tags: ['rbenv']
     - role: iterm2
       tags: ['iterm2']
   tasks:
