@@ -22,7 +22,7 @@ all:
       - "*.sublime-*"
       - ".python-version"
 
-    iterm2_profiles_repo: https://github.com/aptbosox/iterm2-profiles
+    iterm2_profiles_repo: git@github.com:apt-itude/iterm2-profiles.git
 
     pyenv_installed_versions:
       - 3.7.0
