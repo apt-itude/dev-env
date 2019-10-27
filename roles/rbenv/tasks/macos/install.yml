@@ -3,3 +3,8 @@
   homebrew:
     name: rbenv
     state: latest
+
+- name: Ensuring ruby-build is at the latest version
+  homebrew:
+    name: ruby-build
+    state: latest
