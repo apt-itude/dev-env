@@ -46,6 +46,8 @@ all:
       - name: zsh-users/zsh-completions
       - name: zdharma/fast-syntax-highlighting
       - name: peterhurford/up.zsh
+      - name: plugins/docker
+        from: oh-my-zsh
       - name: plugins/python
         from: oh-my-zsh
 
