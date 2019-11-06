@@ -46,6 +46,8 @@ all:
       - name: zsh-users/zsh-completions
       - name: zdharma/fast-syntax-highlighting
       - name: peterhurford/up.zsh
+      - name: plugins/python
+        from: oh-my-zsh
 
     zplug_variables:
       DEFAULT_USER: athompson
