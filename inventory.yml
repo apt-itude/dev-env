@@ -20,6 +20,8 @@ all:
       mergetool.sublimerge.trustExitCode: False
 
     git_ignore_patterns_global:
+      - "*.code-workspace"
+      - ".vscode"
       - "*.sublime-*"
       - ".python-version"
 
