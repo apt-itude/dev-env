@@ -21,9 +21,20 @@ all:
 
     git_ignore_patterns_global:
       - "*.code-workspace"
-      - ".vscode"
+      - ".vscode/"
       - "*.sublime-*"
       - ".python-version"
+      - "__pycache__/"
+      - "*.py[cod]"
+      - "*$py.class"
+      - ".cache/"
+      - ".eggs/"
+      - "*.egg-info/"
+      - "dist/"
+      - ".tox/"
+      - ".coverage/"
+      - "venv/"
+
 
     iterm2_profiles_repo: git@github.com:apt-itude/iterm2-profiles.git
 
