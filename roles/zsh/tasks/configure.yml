@@ -40,3 +40,17 @@
     dest: "{{ zshrc_dir }}/aliases"
   vars:
     aliases: "{{ zsh_aliases }}"
+
+- name: Configure ZSH options
+  template:
+    src: options.j2
+    dest: "{{ zshrc_dir }}/options"
+  vars:
+    options: "{{ zsh_options }}"
+
+- name: Configure ZSH variables
+  template:
+    src: variables.j2
+    dest: "{{ zshrc_dir }}/variables"
+  vars:
+    variables: "{{ zsh_variables }}"
