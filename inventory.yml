@@ -75,6 +75,9 @@ all:
       grep: grep --color=auto
       cl: clear
 
+    zsh_keybindings:
+      "\\^U": backward-kill-line
+
     zsh_options:
       - APPEND_HISTORY
       - EXTENDED_HISTORY

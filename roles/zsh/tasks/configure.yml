@@ -41,6 +41,13 @@
   vars:
     aliases: "{{ zsh_aliases }}"
 
+- name: Configure ZSH keybindings
+  template:
+    src: keybindings.j2
+    dest: "{{ zshrc_dir }}/keybindings"
+  vars:
+    keybindings: "{{ zsh_keybindings }}"
+
 - name: Configure ZSH options
   template:
     src: options.j2
