@@ -1,3 +1,5 @@
 ---
-- include: macos/install.yml
-  when: ansible_os_family == 'Darwin'
+- name: Ensuring git is installed
+  package:
+    name: git
+    state: latest

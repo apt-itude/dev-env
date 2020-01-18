@@ -1,5 +1,0 @@
----
-- name: Ensuring git is installed
-  homebrew:
-    name: git
-    state: latest
