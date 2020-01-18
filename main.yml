@@ -1,8 +1,6 @@
 ---
-- hosts: macs
+- hosts: all
   roles:
-    - role: homebrew
-      tags: ['homebrew']
     - role: zsh
       tags: ['shell', 'zsh']
     - role: zplug
@@ -13,5 +11,10 @@
       tags: ['pyenv']
     - role: rbenv
       tags: ['rbenv']
+
+- hosts: macs
+  roles:
+    - role: homebrew
+      tags: ['homebrew']
     - role: iterm2
       tags: ['iterm2']
