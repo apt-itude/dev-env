@@ -1,3 +1,5 @@
 ---
-- include: macos/install.yml
-  when: ansible_os_family == 'Darwin'
+- name: Install ZSH
+  package:
+    name: zsh
+    state: latest
