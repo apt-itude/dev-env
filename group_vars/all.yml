@@ -9,6 +9,7 @@ git_config_global:
   alias.peek: "!f() { git diff HEAD~${1:-1}; }; f"
   alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
   alias.st: status --ignore-submodules=dirty
+  alias.tidy: "!git branch --merged | grep -v '\\*\\|master' | xargs git branch -d && git remote prune origin"
 
   # Diff and merge tools
   core.editor: subl -n --wait
