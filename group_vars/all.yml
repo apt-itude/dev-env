@@ -1,0 +1,86 @@
+git_config_global:
+  # Common options
+  user.name: Alex Thompson
+
+  # Aliases
+  alias.br: branch --list
+  alias.co: checkout
+  alias.pc: "!f() { git push --set-upstream $(git remote) $(git rev-parse --abbrev-ref HEAD); }; f"
+  alias.peek: "!f() { git diff HEAD~${1:-1}; }; f"
+  alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
+  alias.st: status --ignore-submodules=dirty
+
+  # Diff and merge tools
+  core.editor: subl -n --wait
+  diff.tool: sublimerge
+  difftool.sublimerge.cmd: "subl -n --wait \"$LOCAL\" \"$REMOTE\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\""
+  merge.tool: sublimerge
+  mergetool.sublimerge.cmd: subl -n --wait "$REMOTE" "$BASE" "$LOCAL" "$MERGED" --command "sublimerge_diff_views"
+  mergetool.sublimerge.trustExitCode: False
+
+git_ignore_patterns_global:
+  - "*.code-workspace"
+  - ".vscode/"
+  - "*.sublime-*"
+  - ".python-version"
+  - "__pycache__/"
+  - "*.py[cod]"
+  - "*$py.class"
+  - ".cache/"
+  - ".eggs/"
+  - "*.egg-info/"
+  - "dist/"
+  - ".tox/"
+  - ".coverage/"
+  - "venv/"
+
+zplug_packages:
+  romkatv/powerlevel10k:
+    use: powerlevel10k.zsh-theme
+    as: theme
+  apt-itude/p10k-config:
+  zsh-users/zsh-completions:
+  zdharma/fast-syntax-highlighting:
+  peterhurford/up.zsh:
+  plugins/docker:
+    from: oh-my-zsh
+  plugins/python:
+    from: oh-my-zsh
+
+zplug_variables:
+  DEFAULT_USER: athompson
+
+zsh_aliases:
+  ls: ls --color=auto
+  ll: ls -lsF
+  la: ls -lsaF
+  grep: grep --color=auto
+  cl: clear
+
+zsh_keybindings:
+  "\\^U": backward-kill-line
+
+zsh_options:
+  - APPEND_HISTORY
+  - EXTENDED_HISTORY
+  - HIST_IGNORE_ALL_DUPS
+  - HIST_IGNORE_SPACE
+
+zsh_variables:
+  HISTFILE: "${HOME}/.zhistory"
+  HISTSIZE: 10000
+  SAVEHIST: 10000
+
+pyenv_installed_versions:
+  - 3.7.0
+  - 2.7.16
+
+pyenv_global_versions:
+  - 3.7.0
+  - 2.7.16
+
+rbenv_installed_versions:
+  - 2.6.5
+
+rbenv_global_versions:
+  - 2.6.5

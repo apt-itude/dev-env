@@ -1,4 +1,4 @@
 ---
 zplug_home: ~/.zplug
-zplug_packages: []
-zplug_variables: []
+zplug_packages: {}
+zplug_variables: {}
