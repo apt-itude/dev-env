@@ -6,6 +6,7 @@ homebrew_taps:
 homebrew_formulae:
   - coreutils
   - fff
+  - wget
 
 homebrew_casks:
   - font-inconsolatago-nerd-font-mono
