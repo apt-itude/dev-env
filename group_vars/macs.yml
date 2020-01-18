@@ -1,3 +1,12 @@
+git_config_global:
+  # Diff and merge tools
+  core.editor: subl -n --wait
+  diff.tool: sublimerge
+  difftool.sublimerge.cmd: "subl -n --wait \"$LOCAL\" \"$REMOTE\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\""
+  merge.tool: sublimerge
+  mergetool.sublimerge.cmd: subl -n --wait "$REMOTE" "$BASE" "$LOCAL" "$MERGED" --command "sublimerge_diff_views"
+  mergetool.sublimerge.trustExitCode: False
+
 iterm2_profiles_repo: git@github.com:apt-itude/iterm2-profiles.git
 
 homebrew_taps:

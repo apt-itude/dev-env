@@ -11,14 +11,6 @@ git_config_global:
   alias.st: status --ignore-submodules=dirty
   alias.tidy: "!git branch --merged | grep -v '\\*\\|master' | xargs git branch -d && git remote prune origin"
 
-  # Diff and merge tools
-  core.editor: subl -n --wait
-  diff.tool: sublimerge
-  difftool.sublimerge.cmd: "subl -n --wait \"$LOCAL\" \"$REMOTE\" --command \"sublimerge_diff_views {\\\"left_read_only\\\": true, \\\"right_read_only\\\": true}\""
-  merge.tool: sublimerge
-  mergetool.sublimerge.cmd: subl -n --wait "$REMOTE" "$BASE" "$LOCAL" "$MERGED" --command "sublimerge_diff_views"
-  mergetool.sublimerge.trustExitCode: False
-
 git_ignore_patterns_global:
   - "*.code-workspace"
   - ".vscode/"
