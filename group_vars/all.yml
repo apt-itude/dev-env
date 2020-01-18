@@ -68,11 +68,11 @@ zsh_variables:
 
 pyenv_installed_versions:
   - 3.7.0
-  - 2.7.16
+  - 2.7.17
 
 pyenv_global_versions:
   - 3.7.0
-  - 2.7.16
+  - 2.7.17
 
 rbenv_installed_versions:
   - 2.6.5
