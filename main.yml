@@ -7,8 +7,14 @@
       tags: ['shell', 'zsh', 'zplug']
     - role: git
       tags: ['git']
+
+- hosts: python-dev
+  roles:
     - role: pyenv
       tags: ['pyenv']
+
+- hosts: ruby-dev
+  roles:
     - role: rbenv
       tags: ['rbenv']
 
