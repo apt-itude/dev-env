@@ -67,6 +67,7 @@ zsh_options:
   - EXTENDED_HISTORY
   - HIST_IGNORE_ALL_DUPS
   - HIST_IGNORE_SPACE
+  - INTERACTIVE_COMMENTS
 
 zsh_variables:
   HISTFILE: "${HOME}/.zhistory"
