@@ -1,0 +1,21 @@
+iterm2_profiles_repo: git@github.com:apt-itude/iterm2-profiles.git
+
+homebrew_taps:
+  - homebrew/cask-fonts
+
+homebrew_formulae:
+  - coreutils
+  - fff
+
+homebrew_casks:
+  - font-inconsolatago-nerd-font-mono
+  - google-backup-and-sync
+  # - google-chrome
+  - rocket
+  - safeincloud-password-manager
+  - station
+  - sublime-text
+
+zsh_aliases:
+  show-files: defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app
+  hide-files: defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app
