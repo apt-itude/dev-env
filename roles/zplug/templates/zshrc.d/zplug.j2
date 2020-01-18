@@ -5,8 +5,8 @@ source $ZPLUG_HOME/init.zsh
 {{ key }}={{ value }}
 {% endfor %}
 
-{% for package in zplug_packages %}
-zplug "{{ package['name'] }}"{% for key, value in package.items() if key != 'name' %}, {{ key }}:{{ value }}{% endfor %}
+{% for name, details in zplug_packages.items() %}
+zplug "{{ name }}"{% if details %}{% for key, value in details.items() %}, {{ key }}:{{ value }}{% endfor %}{% endif %}
 
 {% endfor %}
 

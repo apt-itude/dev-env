@@ -35,16 +35,16 @@ git_ignore_patterns_global:
   - "venv/"
 
 zplug_packages:
-  - name: romkatv/powerlevel10k
+  romkatv/powerlevel10k:
     use: powerlevel10k.zsh-theme
     as: theme
-  - name: apt-itude/p10k-config
-  - name: zsh-users/zsh-completions
-  - name: zdharma/fast-syntax-highlighting
-  - name: peterhurford/up.zsh
-  - name: plugins/docker
+  apt-itude/p10k-config:
+  zsh-users/zsh-completions:
+  zdharma/fast-syntax-highlighting:
+  peterhurford/up.zsh:
+  plugins/docker:
     from: oh-my-zsh
-  - name: plugins/python
+  plugins/python:
     from: oh-my-zsh
 
 zplug_variables:

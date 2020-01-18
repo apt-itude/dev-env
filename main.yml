@@ -15,9 +15,3 @@
       tags: ['rbenv']
     - role: iterm2
       tags: ['iterm2']
-  tasks:
-    - name: Configure GNU utils for macOS
-      tags: ['shell', 'zsh']
-      copy:
-        src: zshrc.d/macos-gnu-utils
-        dest: "{{ zshrc_dir }}/"
