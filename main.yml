@@ -8,12 +8,12 @@
     - role: git
       tags: ['git']
 
-- hosts: python-dev
+- hosts: python
   roles:
     - role: pyenv
       tags: ['pyenv']
 
-- hosts: ruby-dev
+- hosts: ruby
   roles:
     - role: rbenv
       tags: ['rbenv']
