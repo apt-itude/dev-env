@@ -6,7 +6,8 @@ source $ZPLUG_HOME/init.zsh
 {% endfor %}
 
 {% for name, details in zplug_packages.items() %}
-zplug "{{ name }}"{% if details %}{% for key, value in details.items() %}, {{ key }}:{{ value }}{% endfor %}{% endif %}
+{% set details = details | default({}, true) %}
+zplug "{{ details.get("repo") | default(name, true) }}"{% for key, value in details.items() %}{% if key != "repo" %}, {{ key }}:{{ value }}{% endif %}{% endfor %}
 
 {% endfor %}
 
