@@ -4,7 +4,7 @@
     repo: 'https://github.com/zplug/zplug'
     dest: "{{ zplug_home }}"
 
-- name: Create .dev-env/zplug directory
+- name: Create ~/.dev-env/zplug directory
   file:
     path: ~/.dev-env/zplug
     state: directory
