@@ -4,7 +4,23 @@
     repo: 'https://github.com/zplug/zplug'
     dest: "{{ zplug_home }}"
 
+- name: Create .dev-env/zplug directory
+  file:
+    path: ~/.dev-env/zplug
+    state: directory
+
 - name: Configure zplug
   template:
-    src: zshrc.d/zplug.j2
-    dest: "{{ zshrc_dir }}/zplug"
+    src: init.j2
+    dest: ~/.dev-env/zplug/init.zsh
+
+- name: Configure ZSH to initialize zplug
+  blockinfile:
+    path: ~/.zshrc
+    block: |
+      if [ -f ~/.dev-env/zplug/init.zsh ]; then
+          source ~/.dev-env/zplug/init.zsh
+      fi
+    insertbefore: BOF
+    marker: "# {mark} BLOCK MANAGED BY DEV-ENV: initialize zplug"
+    create: true
