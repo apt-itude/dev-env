@@ -31,5 +31,6 @@ zsh_aliases:
   hide-files: defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app
 
 zplug_packages:
-  apt-itude/zsh-things:
+  apt-itude/zsh-things/macos-gnu-utils:
+    repo: apt-itude/zsh-things
     use: plugins/macos-gnu-utils.zsh
