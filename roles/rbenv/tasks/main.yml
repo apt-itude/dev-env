@@ -7,7 +7,7 @@
     creates: "{{ rbenv_root }}/versions/{{ item.version }}"
   loop: "{{ rbenv_versions | dict2items(key_name='version', value_name='config') }}"
 
-- name: Setting versions
+- name: Set global versions
   template:
     src: versions.j2
     dest: "{{ rbenv_root }}/version"
@@ -24,5 +24,15 @@
 
 - name: Enabling rbenv in ZSH
   template:
-    src: zshrc.d/rbenv.j2
-    dest: "{{ zshrc_dir }}/rbenv"
+    src: init.j2
+    dest: ~/.dev-env/rbenv/init.sh
+
+- name: Configure ZSH to initialize rbenv
+  blockinfile:
+    path: ~/.zshrc
+    block: |
+      if [ -f ~/.dev-env/rbenv/init.sh ]; then
+          source ~/.dev-env/rbenv/init.sh
+      fi
+    marker: "# {mark} BLOCK MANAGED BY DEV-ENV: initialize rbenv"
+    create: true
