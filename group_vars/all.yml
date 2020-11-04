@@ -29,6 +29,7 @@ git_ignore_patterns_global:
   - ".coverage/"
   - "venv/"
   - "*.envrc"
+  - ".direnv/"
 
 zplug_packages:
   romkatv/powerlevel10k:
