@@ -13,18 +13,25 @@ homebrew_taps:
   - homebrew/cask-fonts
 
 homebrew_formulae:
+  - black
   - coreutils
   - fff
+  - gh
   - wget
 
 homebrew_casks:
+  - 1password
+  - alfred
+  - amethyst
+  - flux
   - font-inconsolatago-nerd-font-mono
-  - google-backup-and-sync
-  # - google-chrome
-  - rocket
-  - safeincloud-password-manager
-  - station
+  - google-drive
+  - insomnia
+  - notion
+  - signal
   - sublime-text
+  - ticktick
+  - visual-studio-code
 
 zsh_aliases:
   show-files: defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app
