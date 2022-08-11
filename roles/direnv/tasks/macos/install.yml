@@ -1,0 +1,5 @@
+---
+- name: Ensuring direnv is installed
+  homebrew:
+    name: direnv
+    state: latest
