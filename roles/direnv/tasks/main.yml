@@ -1,0 +1,7 @@
+---
+- include: install.yml
+
+- name: Enabling direnv in ZSH
+  template:
+    src: zshrc.d/direnv.j2
+    dest: "{{ zshrc_dir }}/direnv"

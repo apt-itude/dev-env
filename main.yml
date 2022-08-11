@@ -7,6 +7,8 @@
       tags: ['shell', 'zsh', 'zplug']
     - role: git
       tags: ['git']
+    - role: direnv
+      tags: ['direnv']
 
 - hosts: python
   roles:
