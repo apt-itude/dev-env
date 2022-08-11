@@ -43,6 +43,8 @@ zplug_packages:
     from: oh-my-zsh
   plugins/python:
     from: oh-my-zsh
+  plugins/poetry:
+    from: oh-my-zsh
 
 zplug_variables:
   DEFAULT_USER: athompson
