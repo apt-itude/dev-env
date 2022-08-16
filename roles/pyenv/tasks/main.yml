@@ -2,17 +2,25 @@
 - include_tasks: install.yml
 
 - name: Installing versions
-  command: pyenv install "{{ item }}"
+  command: pyenv install "{{ item.version }}"
   args:
-    creates: "{{ pyenv_root }}/versions/{{ item }}"
-  loop: "{{ pyenv_installed_versions }}"
+    creates: "{{ pyenv_root }}/versions/{{ item.version }}"
+  loop: "{{ pyenv_versions | dict2items(key_name='version', value_name='config') }}"
 
 - name: Setting versions
   template:
     src: versions.j2
     dest: "{{ pyenv_root }}/version"
   vars:
-    versions: "{{ pyenv_global_versions }}"
+    versions: |
+      {{
+        pyenv_versions |
+        dict2items(key_name='version', value_name='config') |
+        rejectattr('config', 'none') |
+        selectattr('config.global', 'equalto', true) |
+        map(attribute='version') |
+        sort(reverse=True)
+      }}
 
 - name: Enabling pyenv in ZSH
   template:

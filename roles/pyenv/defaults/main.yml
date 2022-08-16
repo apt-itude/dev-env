@@ -1,7 +1,6 @@
 ---
 pyenv_root: "{{ ansible_env.HOME }}/.pyenv"
 
-pyenv_installed_versions: []
-pyenv_global_versions: []
+pyenv_versions: {}
 
 pyenv_virtualenv: true
