@@ -1,0 +1,5 @@
+---
+- name: Ensure go is installed
+  package:
+    name: go
+    state: present
