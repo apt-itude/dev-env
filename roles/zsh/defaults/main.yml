@@ -4,6 +4,7 @@ zsh_bin_path: /usr/bin/zsh
 zshrc_dir: ~/.zshrc.d
 zshenv_dir: ~/.zshenv.d
 zsh_aliases: {}
+zsh_functions: {}
 zsh_keybindings: {}
 zsh_options: []
 zsh_variables: {}
