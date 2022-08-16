@@ -56,6 +56,12 @@ zsh_aliases:
   grep: grep --color=auto
   cl: clear
 
+zsh_functions:
+  subdiff: |
+    subdiff() {
+        subl -n --wait "$1" "$2" --command "sublimerge_diff_views {\"left_read_only\": true, \"right_read_only\": true}"
+    }
+
 zsh_keybindings:
   "\\^U": backward-kill-line
 
