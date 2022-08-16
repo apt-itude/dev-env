@@ -22,3 +22,11 @@ homebrew_formulae:
 homebrew_casks:
   intellij-idea-ce:
   rancher:
+
+pyenv_versions:
+  3.9.13:
+    global: true
+  3.6.15:
+    global: true
+  2.7.17:
+    global: true
