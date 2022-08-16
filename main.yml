@@ -9,6 +9,8 @@
       tags: ['git']
     - role: direnv
       tags: ['direnv']
+    - role: vscode
+      tags: ['vscode']
 
 - hosts: python
   roles:
