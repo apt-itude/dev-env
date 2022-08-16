@@ -3,6 +3,7 @@ git_config_global:
 
 zsh_variables:
   KUBE_EDITOR: "subl --wait"
+  PIP_CONSTRAINT: "${HOME}/.pip/constraints.txt"
 
 homebrew_taps:
   HubSpot/main:
