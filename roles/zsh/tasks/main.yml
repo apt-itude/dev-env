@@ -1,4 +1,4 @@
 ---
-- include: install.yml
-- include: configure.yml
-- include: enable.yml
+- include_tasks: install.yml
+- include_tasks: configure.yml
+- include_tasks: enable.yml
