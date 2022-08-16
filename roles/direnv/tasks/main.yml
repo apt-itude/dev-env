@@ -1,5 +1,5 @@
 ---
-- include: install.yml
+- include_tasks: install.yml
 
 - name: Enabling direnv in ZSH
   template:
