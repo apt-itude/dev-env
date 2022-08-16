@@ -1,4 +1,6 @@
 ---
-homebrew_taps: []
-homebrew_formulae: []
-homebrew_casks: []
+homebrew_taps:
+  homebrew/core: {}
+  homebrew/cask: {}
+homebrew_formulae: {}
+homebrew_casks: {}

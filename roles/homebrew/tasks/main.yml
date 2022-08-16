@@ -5,18 +5,19 @@
 
 - name: Configure Taps
   homebrew_tap:
-    tap: "{{ item }}"
-    state: present
-  loop: "{{ ['homebrew/core', 'homebrew/cask'] + homebrew_taps }}"
+    name: "{{ item.name }}"
+    state: "{{ item.config.state | default('present') }}"
+    url: "{{ item.config.url | default(None) }}"
+  loop: "{{ homebrew_taps | dict2items(key_name='name', value_name='config') }}"
 
 - name: Install Formulae
   homebrew:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ homebrew_formulae }}"
+    name: "{{ item.name }}"
+    state: "{{ item.config.state | default('present') }}"
+  loop: "{{ homebrew_formulae | dict2items(key_name='name', value_name='config') }}"
 
 - name: Install Casks
   homebrew_cask:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ homebrew_casks }}"
+    name: "{{ item.name }}"
+    state: "{{ item.config.state | default('present') }}"
+  loop: "{{ homebrew_casks | dict2items(key_name='name', value_name='config') }}"
