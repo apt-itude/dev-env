@@ -2,17 +2,25 @@
 - include_tasks: install.yml
 
 - name: Installing versions
-  command: rbenv install "{{ item }}"
+  command: rbenv install "{{ item.version }}"
   args:
-    creates: "{{ rbenv_root }}/versions/{{ item }}"
-  loop: "{{ rbenv_installed_versions }}"
+    creates: "{{ rbenv_root }}/versions/{{ item.version }}"
+  loop: "{{ rbenv_versions | dict2items(key_name='version', value_name='config') }}"
 
 - name: Setting versions
   template:
     src: versions.j2
     dest: "{{ rbenv_root }}/version"
   vars:
-    versions: "{{ rbenv_global_versions }}"
+    versions: |
+      {{
+        rbenv_versions |
+        dict2items(key_name='version', value_name='config') |
+        rejectattr('config', 'none') |
+        selectattr('config.global', 'equalto', true) |
+        map(attribute='version') |
+        sort(reverse=True)
+      }}
 
 - name: Enabling rbenv in ZSH
   template:

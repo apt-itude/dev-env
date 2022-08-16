@@ -75,8 +75,6 @@ pyenv_versions:
   3.10.6:
     global: true
 
-rbenv_installed_versions:
-  - 2.6.5
-
-rbenv_global_versions:
-  - 2.6.5
+rbenv_versions:
+  2.6.5:
+    global: true
