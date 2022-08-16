@@ -1,2 +1,24 @@
 git_config_global:
   user.email: athompson@hubspot.com
+
+homebrew_taps:
+  HubSpot/main:
+    url: git@git.hubteam.com:HubSpot/homebrew-main.git
+  HubSpot/infra:
+    url: git@git.hubteam.com:HubSpot/homebrew-infra.git
+
+homebrew_formulae:
+  hs-cookiecutter:
+  hs-infractl:
+  hs-kubectl:
+  hs-kubectl-go:
+  hs-percona-server:
+  hsenv:
+  hubspot-awscli:
+  kubectl-datainfra:
+  stern:
+  zstd:
+
+homebrew_casks:
+  intellij-idea-ce:
+  rancher:
