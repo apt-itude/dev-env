@@ -20,6 +20,11 @@
     - role: rbenv
       tags: ['rbenv']
 
+- hosts: go
+  roles:
+    - role: go
+      tags: ['go']
+
 - hosts: macs
   roles:
     - role: homebrew

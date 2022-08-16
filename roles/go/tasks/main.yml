@@ -1,0 +1,7 @@
+---
+- include_tasks: install.yml
+
+- name: Enable go in ZSH
+  template:
+    src: zshrc.d/go.j2
+    dest: "{{ zshrc_dir }}/go"
