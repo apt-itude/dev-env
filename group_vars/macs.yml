@@ -17,6 +17,7 @@ homebrew_formulae:
   coreutils:
   fff:
   gh:
+  htop:
   poetry:
   wget:
 
@@ -30,6 +31,7 @@ homebrew_casks:
   insomnia:
   notion:
   signal:
+  spotify:
   sublime-text:
   ticktick:
   visual-studio-code:
