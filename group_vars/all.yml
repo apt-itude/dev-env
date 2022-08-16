@@ -70,6 +70,7 @@ zsh_variables:
   HISTFILE: "${HOME}/.zhistory"
   HISTSIZE: 10000
   SAVEHIST: 10000
+  EDITOR: "subl --wait"
 
 pyenv_versions:
   3.10.6:

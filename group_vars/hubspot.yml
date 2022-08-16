@@ -1,6 +1,9 @@
 git_config_global:
   user.email: athompson@hubspot.com
 
+zsh_variables:
+  KUBE_EDITOR: "subl --wait"
+
 homebrew_taps:
   HubSpot/main:
     url: git@git.hubteam.com:HubSpot/homebrew-main.git
