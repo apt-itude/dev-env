@@ -17,6 +17,7 @@ homebrew_formulae:
   coreutils:
   fff:
   gh:
+  htop:
   poetry:
   wget:
 
