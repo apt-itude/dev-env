@@ -10,29 +10,29 @@ git_config_global:
 iterm2_profiles_repo: git@github.com:apt-itude/iterm2-profiles.git
 
 homebrew_taps:
-  - homebrew/cask-fonts
+  homebrew/cask-fonts:
 
 homebrew_formulae:
-  - black
-  - coreutils
-  - fff
-  - gh
-  - poetry
-  - wget
+  black:
+  coreutils:
+  fff:
+  gh:
+  poetry:
+  wget:
 
 homebrew_casks:
-  - 1password
-  - alfred
-  - amethyst
-  - flux
-  - font-inconsolatago-nerd-font-mono
-  - google-drive
-  - insomnia
-  - notion
-  - signal
-  - sublime-text
-  - ticktick
-  - visual-studio-code
+  1password:
+  alfred:
+  amethyst:
+  flux:
+  font-inconsolatago-nerd-font-mono:
+  google-drive:
+  insomnia:
+  notion:
+  signal:
+  sublime-text:
+  ticktick:
+  visual-studio-code:
 
 zsh_aliases:
   show-files: defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app
