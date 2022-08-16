@@ -42,4 +42,4 @@ zsh_aliases:
 
 zplug_packages:
   apt-itude/zsh-things:
-    use: plugins/macos-gnu-utils.zsh
+    use: plugins/{macos-gnu-utils,dircolors}.zsh
