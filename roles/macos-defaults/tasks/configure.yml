@@ -1,0 +1,9 @@
+---
+- name: Configure {{ domain_item.domain }} defaults
+  community.general.osx_defaults:
+    domain: "{{ domain_item.domain }}"
+    key: "{{ item.key }}"
+    state: "{{ item.settings.state | default('present') }}"
+    type: "{{ item.settings.type | default('string') }}"
+    value: "{{ item.settings.value }}"
+  loop: "{{ domain_item.settings | dict2items(key_name='key', value_name='settings') }}"

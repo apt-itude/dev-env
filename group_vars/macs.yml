@@ -42,3 +42,13 @@ zsh_aliases:
 zplug_packages:
   apt-itude/zsh-things:
     use: plugins/{macos-gnu-utils,dircolors}.zsh
+
+macos_defaults:
+  com.apple.dock:
+    autohide:
+      type: bool
+      value: true
+    # Disable rearranging spaces automatically
+    mru-spaces:
+      type: bool
+      value: false

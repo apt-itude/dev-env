@@ -31,5 +31,7 @@
   roles:
     - role: homebrew
       tags: ['homebrew']
+    - role: macos-defaults
+      tags: ['macos-defaults', 'defaults']
     - role: iterm2
       tags: ['iterm2']

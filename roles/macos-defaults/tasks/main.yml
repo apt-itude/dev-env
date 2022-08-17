@@ -1,0 +1,6 @@
+---
+- name: Configure macOS defaults
+  include_tasks: configure.yml
+  loop: "{{ macos_defaults | dict2items(key_name='domain', value_name='settings') }}"
+  loop_control:
+    loop_var: domain_item
