@@ -13,7 +13,6 @@ homebrew_taps:
   homebrew/cask-fonts:
 
 homebrew_formulae:
-  black:
   coreutils:
   fff:
   gh:

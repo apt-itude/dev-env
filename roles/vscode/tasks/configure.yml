@@ -1,0 +1,33 @@
+---
+- name: Determine application config directory
+  set_fact:
+    app_config_directory: "{{ ansible_env.HOME }}/Library/Application Support"
+  when: ansible_os_family == 'Darwin'
+
+- name: Set VSCode user settings path
+  set_fact:
+    vscode_user_settings_path: "{{ app_config_directory }}/Code/User/settings.json"
+
+- name: Read existing VSCode user settings
+  slurp:
+    src: "{{ vscode_user_settings_path }}"
+  register: vscode_existing_user_settings_file
+
+- name: Parse existing VSCode user settings as JSON
+  set_fact:
+    vscode_existing_user_settings: |
+      {{
+        vscode_existing_user_settings_file.content |
+        b64decode |
+        default('{}', true) |
+        from_json
+      }}
+
+- name: Merge configured VSCode user settings with existing
+  set_fact:
+    vscode_updated_user_settings: "{{ vscode_existing_user_settings | combine(vscode_user_settings) }}"
+
+- name: Save VSCode user settings
+  copy:
+    content: "{{ vscode_updated_user_settings | to_nice_json }}"
+    dest: "{{ vscode_user_settings_path }}"
