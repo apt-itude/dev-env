@@ -3,6 +3,7 @@
   command:
     cmd: "brew --prefix"
   register: brew_prefix_result
+  changed_when: False
   when: ansible_os_family == "Darwin"
 
 - name: Set ZSH path on macOS
