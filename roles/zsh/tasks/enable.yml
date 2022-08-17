@@ -1,9 +1,15 @@
 ---
+- name: Get Homebrew prefix
+  command:
+    cmd: "brew --prefix"
+  register: brew_prefix_result
+  when: ansible_os_family == "Darwin"
+
 - name: Set ZSH path on macOS
   set_fact:
-    zsh_bin_path: /usr/local/bin/zsh
+    zsh_bin_path: "{{ brew_prefix_result.stdout }}/bin/zsh"
   when: ansible_os_family == "Darwin"
-  
+
 - name: Set user shell to ZSH
   user:
     name: "{{ zsh_user }}"
