@@ -3,6 +3,7 @@
   command:
     cmd: "{{ vscode_executable }} --list-extensions"
   register: vscode_installed_extensions_result
+  changed_when: False
 
 - name: Parse installed VSCode extensions output
   set_fact:
