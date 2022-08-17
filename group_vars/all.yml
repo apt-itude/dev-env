@@ -90,6 +90,14 @@ rbenv_versions:
   2.6.5:
     global: true
 
+vscode_extensions:
+  bungcip.better-toml:
+  monokai.theme-monokai-pro-vscode:
+  ms-python.python:
+  ms-python.vscode-pylance:
+  redhat.ansible:
+  stkb.rewrap:
+
 vscode_user_settings:
   "[css]":
     editor.insertSpaces: true
