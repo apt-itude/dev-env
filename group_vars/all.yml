@@ -93,6 +93,8 @@ rbenv_versions:
 vscode_extensions:
   bungcip.better-toml:
   monokai.theme-monokai-pro-vscode:
+  ms-python.black-formatter:
+  ms-python.isort:
   ms-python.python:
   ms-python.vscode-pylance:
   redhat.ansible:
@@ -114,6 +116,7 @@ vscode_user_settings:
   "[python]":
     editor.codeActionsOnSave:
       source.organizeImports: true
+    editor.defaultFormatter: "ms-python.black-formatter"
     editor.rulers:
       - 88
   editor.fontFamily: "InconsolataGoNerdFontCompleteM-Regular"
@@ -141,18 +144,14 @@ vscode_user_settings:
   files.trimTrailingWhitespace: true
   gopls:
     ui.semanticTokens: true
-  python.analysis.autoImportCompletions: false
-  python.analysis.typeCheckingMode: basic
-  python.formatting.blackPath: /usr/local/bin/black
-  python.formatting.provider: black
-  python.linting.mypyEnabled: true
-  python.linting.pylintEnabled: true
-  python.sortImports.args:
+  isort.args:
     - --profile
     - black
-    - --src
-    - ${workspaceFolder}
-  python.sortImports.path: /usr/local/bin/isort
+  python.analysis.autoImportCompletions: false
+  python.analysis.typeCheckingMode: basic
+  python.formatting.provider: "none"
+  python.linting.mypyEnabled: true
+  python.linting.pylintEnabled: true
   python.testing.autoTestDiscoverOnSaveEnabled: false
   scm.diffDecorations: gutter
   search.useGlobalIgnoreFiles: true
