@@ -9,16 +9,10 @@
     vscode_user_settings_path: "{{ app_config_directory }}/Code/User/settings.json"
 
 - name: Read existing VSCode user settings
-  slurp:
-    src: "{{ vscode_user_settings_path }}"
-  register: vscode_existing_user_settings_file
-
-- name: Parse existing VSCode user settings as JSON
   set_fact:
     vscode_existing_user_settings: |
       {{
-        vscode_existing_user_settings_file.content |
-        b64decode |
+        lookup('file', vscode_user_settings_path, errors='ignore') |
         default('{}', true) |
         from_json
       }}
