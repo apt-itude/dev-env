@@ -40,9 +40,14 @@ zsh_aliases:
   show-files: defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app
   hide-files: defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app
 
+
 zplug_packages:
-  apt-itude/zsh-things:
-    use: plugins/{macos-gnu-utils,dircolors}.zsh
+  apt-itude/zsh-things/macos-gnu-utils:
+    repo: apt-itude/zsh-things
+    use: plugins/macos-gnu-utils.zsh
+  apt-itude/zsh-things/dircolors:
+    repo: apt-itude/zsh-things
+    use: plugins/dircolors.zsh
 
 macos_defaults:
   com.apple.dock:
