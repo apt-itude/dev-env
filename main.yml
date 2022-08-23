@@ -2,36 +2,34 @@
 - hosts: all
   roles:
     - role: zsh
-      tags: ['shell', 'zsh']
+      tags: ["shell", "zsh"]
     - role: zplug
-      tags: ['shell', 'zsh', 'zplug']
+      tags: ["shell", "zsh", "zplug"]
     - role: git
-      tags: ['git']
+      tags: ["git"]
     - role: direnv
-      tags: ['direnv']
-    - role: vscode
-      tags: ['vscode']
+      tags: ["direnv"]
 
 - hosts: python
   roles:
     - role: pyenv
-      tags: ['pyenv']
+      tags: ["pyenv"]
 
 - hosts: ruby
   roles:
     - role: rbenv
-      tags: ['rbenv']
+      tags: ["rbenv"]
 
 - hosts: go
   roles:
     - role: go
-      tags: ['go']
+      tags: ["go"]
 
 - hosts: macs
   roles:
     - role: homebrew
-      tags: ['homebrew']
+      tags: ["homebrew"]
     - role: macos-defaults
-      tags: ['macos-defaults', 'defaults']
+      tags: ["macos-defaults", "defaults"]
     - role: iterm2
-      tags: ['iterm2']
+      tags: ["iterm2"]

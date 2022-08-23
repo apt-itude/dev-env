@@ -1,3 +1,0 @@
----
-- include_tasks: macos/install.yml
-  when: ansible_os_family == 'Darwin'
