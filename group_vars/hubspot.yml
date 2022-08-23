@@ -35,7 +35,7 @@ pyenv_versions:
     global: true
   3.6.15:
     global: true
-  2.7.17:
+  2.7.18:
     global: true
 
 vscode_extensions:
