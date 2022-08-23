@@ -1,27 +1,36 @@
 ---
+- name: Install VSCode user repository
+  git:
+    repo: "{{ vscode_user_repo }}"
+    dest: "{{ vscode_user_dir }}"
+
+- name: Check for VSCode user settings
+  stat:
+    path: "{{ vscode_user_dir }}/settings.json"
+  register: vscode_user_settings_file
+
+- name: Check for VSCode user keybindings
+  stat:
+    path: "{{ vscode_user_dir }}/keybindings.json"
+  register: vscode_user_keybindings_file
+
 - name: Determine application config directory
   set_fact:
     app_config_directory: "{{ ansible_env.HOME }}/Library/Application Support"
   when: ansible_os_family == 'Darwin'
 
-- name: Set VSCode user settings path
-  set_fact:
-    vscode_user_settings_path: "{{ app_config_directory }}/Code/User/settings.json"
+- name: Link VSCode user settings
+  file:
+    src: "{{ vscode_user_settings_file.stat.path }}"
+    dest: "{{ app_config_directory }}/Code/User/settings.json"
+    state: link
+    force: true
+  when: vscode_user_settings_file.stat.isreg
 
-- name: Read existing VSCode user settings
-  set_fact:
-    vscode_existing_user_settings: |
-      {{
-        lookup('file', vscode_user_settings_path, errors='ignore') |
-        default('{}', true) |
-        from_json
-      }}
-
-- name: Merge configured VSCode user settings with existing
-  set_fact:
-    vscode_updated_user_settings: "{{ vscode_existing_user_settings | combine(vscode_user_settings) }}"
-
-- name: Save VSCode user settings
-  copy:
-    content: "{{ vscode_updated_user_settings | to_nice_json }}"
-    dest: "{{ vscode_user_settings_path }}"
+- name: Link VSCode user keybindings
+  file:
+    src: "{{ vscode_user_keybindings_file.stat.path }}"
+    dest: "{{ app_config_directory }}/Code/User/keybindings.json"
+    state: link
+    force: true
+  when: vscode_user_keybindings_file.stat.isreg

@@ -2,4 +2,4 @@
 vscode_executable: code
 vscode_extensions_dir: "{{ ansible_env.HOME }}/.vscode/extensions"
 vscode_extensions: {}
-vscode_user_settings: {}
+vscode_user_dir: "{{ ansible_env.HOME }}/.dev-env/vscode-user"
