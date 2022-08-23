@@ -7,7 +7,7 @@ git_config_global:
   mergetool.sublimerge.cmd: subl -n --wait "$REMOTE" "$BASE" "$LOCAL" "$MERGED" --command "sublimerge_diff_views"
   mergetool.sublimerge.trustExitCode: False
 
-iterm2_profiles_repo: git@github.com:apt-itude/iterm2-profiles.git
+iterm2_profiles_repo: https://github.com/apt-itude/iterm2-profiles.git
 
 homebrew_taps:
   homebrew/cask-fonts:
