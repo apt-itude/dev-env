@@ -19,7 +19,6 @@ homebrew_formulae:
   hs-infractl:
   hs-kubectl:
   hs-kubectl-go:
-  hs-percona-server:
   hsenv:
   hubspot-awscli:
   kubectl-datainfra:
