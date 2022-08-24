@@ -21,6 +21,7 @@ homebrew_formulae:
   hs-kubectl-go:
   hsenv:
   hubspot-awscli:
+  kube-boot:
   kubectl-datainfra:
   stern:
   zstd:
