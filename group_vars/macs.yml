@@ -53,3 +53,7 @@ macos_defaults:
     mru-spaces:
       type: bool
       value: false
+    # Don't show recent applications
+    show-recents:
+      type: bool
+      value: false
