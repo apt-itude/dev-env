@@ -87,7 +87,7 @@ pyenv_versions:
     global: true
 
 rbenv_versions:
-  2.6.5:
+  2.7.6:
     global: true
 
 vscode_extensions:
