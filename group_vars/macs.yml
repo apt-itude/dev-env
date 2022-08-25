@@ -22,7 +22,8 @@ homebrew_formulae:
 
 homebrew_casks:
   1password:
-  alfred:
+  # This is Alfred 5 now and we don't have a license for that
+  #  alfred:
   amethyst:
   flux:
   font-inconsolata-go-nerd-font:
