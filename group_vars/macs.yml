@@ -51,6 +51,10 @@ macos_defaults:
     autohide:
       type: bool
       value: true
+    # Minimize apps to icon instead of near downloads
+    minimize-to-application:
+      type: bool
+      value: true
     # Disable rearranging spaces automatically
     mru-spaces:
       type: bool
