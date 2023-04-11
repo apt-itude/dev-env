@@ -14,6 +14,7 @@ git_config_global:
   alias.tidy: "!git branch --merged | grep -v '\\*\\|master' | xargs git branch -d && git remote prune origin"
 
 git_ignore_patterns_global:
+  - ".DS_Store"
   - "*.code-workspace"
   - ".vscode/"
   - "*.sublime-*"
