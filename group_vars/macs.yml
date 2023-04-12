@@ -48,6 +48,10 @@ zplug_packages:
     use: plugins/{macos-gnu-utils,dircolors}.zsh
 
 macos_defaults:
+  NSGlobalDomain:
+    com.apple.swipescrolldirection:
+      type: bool
+      value: false
   com.apple.dock:
     autohide:
       type: bool
