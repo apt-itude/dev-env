@@ -26,6 +26,7 @@ homebrew_casks:
   # This is Alfred 5 now and we don't have a license for that
   #  alfred:
   amethyst:
+  arc:
   flux:
   font-inconsolata-go-nerd-font:
   google-chrome:
