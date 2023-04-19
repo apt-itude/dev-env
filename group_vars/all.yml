@@ -11,7 +11,9 @@ git_config_global:
   alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
   alias.ri: "!f() { git rebase -i HEAD~${1:-1}; }; f"
   alias.st: status --ignore-submodules=dirty
-  alias.tidy: "!git branch --merged | grep -v '\\*\\|master|main' | xargs git branch -d && git remote prune origin"
+  alias.pp: pull --prune
+  alias.tidy: '!git branch --format ''%(refname:short) %(upstream:track)'' | awk ''$2 == "[gone]" { print $1}'' | xargs -r git branch -D'
+  alias.sync: "!git pp && git tidy"
 
 git_ignore_patterns_global:
   - ".DS_Store"
