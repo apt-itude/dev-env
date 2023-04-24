@@ -6,6 +6,7 @@ git_config_global:
   alias.br: branch --list
   alias.cb: rev-parse --abbrev-ref HEAD
   alias.co: checkout
+  alias.nb: "!f() { git checkout -b ${GIT_BRANCH_PREFIX}${1}; }; f"
   alias.pc: "!f() { git push --set-upstream $(git remote) $(git rev-parse --abbrev-ref HEAD); }; f"
   alias.peek: "!f() { git diff HEAD~${1:-1}; }; f"
   alias.pop: "!f() { git reset HEAD~${1:-1}; }; f"
