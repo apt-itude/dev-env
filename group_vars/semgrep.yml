@@ -1,0 +1,13 @@
+git_config_global:
+  user.email: alex.thompson@semgrep.com
+
+zsh_variables:
+  KUBE_EDITOR: "subl --wait"
+
+homebrew_taps:
+  returntocorp/infra:
+    url: git@github.com:returntocorp/homebrew-infra.git
+
+homebrew_formulae:
+  returntocorp/infra/kubectl:
+  returntocorp/infra/kustomize:
