@@ -9,5 +9,13 @@ homebrew_taps:
     url: git@github.com:returntocorp/homebrew-infra.git
 
 homebrew_formulae:
+  awscli:
+  Noovolari/brew/leapp-cli-darwin-arm64:
   returntocorp/infra/kubectl:
   returntocorp/infra/kustomize:
+
+homebrew_casks:
+  aws-vpn-client:
+  docker:
+  leapp:
+  session-manager-plugin:
