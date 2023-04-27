@@ -10,6 +10,7 @@ homebrew_taps:
 
 homebrew_formulae:
   awscli:
+  homeport/tap/dyff:
   Noovolari/brew/leapp-cli-darwin-arm64:
   returntocorp/infra/kubectl:
   returntocorp/infra/kustomize:
