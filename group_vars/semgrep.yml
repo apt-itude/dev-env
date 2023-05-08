@@ -1,6 +1,21 @@
 git_config_global:
   user.email: alex.thompson@semgrep.com
 
+zsh_functions:
+  login-aws: |
+    function login-aws() {
+      okta-aws-cli \
+      --org-domain login.semgrep.com \
+      --oidc-client-id $(op read op://Semgrep/oidc-client-id/credential) \
+      --aws-iam-idp arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):saml-provider/okta \
+      --aws-iam-role arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/org_parent-developer \
+      --aws-acct-fed-app-id $(op read op://Semgrep/aws-acct-fed-app-id/credential) \
+      --session-duration 28800 \
+      --write-aws-credentials \
+      --cache-access-token \
+      --open-browser
+    }
+
 homebrew_taps:
   returntocorp/infra:
     url: git@github.com:returntocorp/homebrew-infra.git
