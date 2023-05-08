@@ -84,6 +84,7 @@ zsh_variables:
   HISTSIZE: 10000
   SAVEHIST: 10000
   EDITOR: "subl --wait"
+  KUBE_EDITOR: "subl --wait"
   PIP_REQUIRE_VIRTUALENV: "true"
 
 pyenv_versions:
