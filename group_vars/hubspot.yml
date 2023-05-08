@@ -5,7 +5,6 @@ zsh_aliases:
   kubectl-completions: source <(kubectl completion zsh)
 
 zsh_variables:
-  KUBE_EDITOR: "subl --wait"
   PIP_CONSTRAINT: "${HOME}/.pip/constraints.txt"
 
 homebrew_taps:
