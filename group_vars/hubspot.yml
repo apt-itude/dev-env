@@ -36,6 +36,3 @@ pyenv_versions:
     global: true
   2.7.18:
     global: true
-
-vscode_extensions:
-  golang.go:
