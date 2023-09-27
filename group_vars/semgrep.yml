@@ -80,7 +80,7 @@ homebrew_formulae:
   returntocorp/infra/kustomize:
 
 homebrew_casks:
-  aws-vpn-client:
+  aws-vpn-client-semgrep:
   docker:
   leapp:
   session-manager-plugin:
