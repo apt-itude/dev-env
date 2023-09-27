@@ -5,12 +5,13 @@ zsh_functions:
   ckc: |
     function ckc() { # change kubernetes cluster
       if [ -z "$1" ]; then
-        echo "Usage: ckc [dev|staging|prod]"
+        echo "Usage: ckc [dev|dev2|staging|prod]"
         echo "Current context: `kubectl config current-context`"
         return 1
       else
         case "$1" in
           dev) aws eks --region us-west-2 update-kubeconfig --name dev-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/dev-semgrep-app-cluster-kubernetes-apply --profile default ;;
+          dev2) aws eks --region us-west-2 update-kubeconfig --name dev2-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/dev2-semgrep-app-cluster-kubernetes-apply --profile default ;;
           staging) aws eks --region us-west-2 update-kubeconfig --name staging-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/staging-semgrep-app-cluster-kubernetes-apply --profile default ;;
           prod) aws eks --region us-west-2 update-kubeconfig --name prod-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/prod-semgrep-app-cluster-kubernetes-apply --profile default ;;
           *)
