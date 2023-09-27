@@ -58,6 +58,14 @@ zsh_functions:
     function kaw { # shorthand for kubectl ... -o wide --all-namespaces
         kubectl "$@" -o wide --all-namespaces
     }
+  knp: |
+    function knp {
+        kubectl get pods --all-namespaces --field-selector="spec.nodeName=$1" "${@:2}"
+    }
+  kdrain: |
+    function kdrain {
+        kubectl drain --ignore-daemonsets --delete-emptydir-data "$@"
+    }
 
 homebrew_taps:
   returntocorp/infra:
