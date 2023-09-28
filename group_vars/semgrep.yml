@@ -28,7 +28,7 @@ zsh_functions:
       --aws-iam-idp arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):saml-provider/okta \
       --aws-iam-role arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/org_parent-developer \
       --aws-acct-fed-app-id $(op read op://Semgrep/aws-acct-fed-app-id/credential) \
-      --session-duration 86400 \
+      --session-duration 43200 \
       --write-aws-credentials \
       --cache-access-token \
       --open-browser
