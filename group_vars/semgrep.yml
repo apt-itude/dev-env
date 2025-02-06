@@ -1,19 +1,19 @@
 git_config_global:
   user.email: alex.thompson@semgrep.com
+  rerere.enabled: "true"
 
 zsh_functions:
-  ckc: |
-    function ckc() { # change kubernetes cluster
+  ckc-old: |
+    function ckc-old() { # change kubernetes cluster
       if [ -z "$1" ]; then
         echo "Usage: ckc [dev|dev2|staging|prod]"
         echo "Current context: `kubectl config current-context`"
         return 1
       else
         case "$1" in
-          dev) aws eks --region us-west-2 update-kubeconfig --name dev-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/dev-semgrep-app-cluster-kubernetes-apply --profile default ;;
-          dev2) aws eks --region us-west-2 update-kubeconfig --name dev2-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/dev2-semgrep-app-cluster-kubernetes-apply --profile default ;;
-          staging) aws eks --region us-west-2 update-kubeconfig --name staging-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/staging-semgrep-app-cluster-kubernetes-apply --profile default ;;
-          prod) aws eks --region us-west-2 update-kubeconfig --name prod-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/prod-semgrep-app-cluster-kubernetes-apply --profile default ;;
+          dev2) aws eks --region us-west-2 update-kubeconfig --name dev2-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/dev2-semgrep-app-cluster-kubernetes-apply;;
+          staging) aws eks --region us-west-2 update-kubeconfig --name staging-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/staging-semgrep-app-cluster-kubernetes-apply;;
+          prod) aws eks --region us-west-2 update-kubeconfig --name prod-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/prod-semgrep-app-cluster-kubernetes-apply;;
           *)
             echo "unknown cluster '$1'"
                 return 1 ;;
@@ -22,16 +22,7 @@ zsh_functions:
     }
   login-aws: |
     function login-aws() {
-      okta-aws-cli \
-      --org-domain login.semgrep.com \
-      --oidc-client-id $(op read op://Semgrep/oidc-client-id/credential) \
-      --aws-iam-idp arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):saml-provider/okta \
-      --aws-iam-role arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/org_parent-developer \
-      --aws-acct-fed-app-id $(op read op://Semgrep/aws-acct-fed-app-id/credential) \
-      --session-duration 28800 \
-      --write-aws-credentials \
-      --cache-access-token \
-      --open-browser
+      aws sso login --sso-session semgrep
     }
   login-ecr: |
     function login-ecr { # shorthand to login to ECR repo
@@ -62,10 +53,17 @@ zsh_functions:
     function knp {
         kubectl get pods --all-namespaces --field-selector="spec.nodeName=$1" "${@:2}"
     }
+  kpn: |
+    function kpn {
+        kubectl get pod -o jsonpath="{.spec.nodeName}{'\n'}" "$@"
+    }
   kdrain: |
     function kdrain {
         kubectl drain --ignore-daemonsets --delete-emptydir-data "$@"
     }
+
+zsh_variables:
+  AWS_PROFILE: engineer
 
 homebrew_taps:
   returntocorp/infra:
@@ -78,9 +76,9 @@ homebrew_formulae:
   okta-aws-cli:
   returntocorp/infra/kubectl:
   returntocorp/infra/kustomize:
+  withgraphite/tap/graphite:
 
 homebrew_casks:
   aws-vpn-client-semgrep:
-  docker:
-  leapp:
+  orbstack:
   session-manager-plugin:
