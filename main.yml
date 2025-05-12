@@ -25,6 +25,11 @@
     - role: go
       tags: ["go"]
 
+- hosts: terraform
+  roles:
+    - role: tfswitch
+      tags: ["tfswitch"]
+
 - hosts: macs
   roles:
     - role: homebrew
