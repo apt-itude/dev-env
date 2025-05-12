@@ -1,0 +1,5 @@
+---
+- name: Ensuring tfswitch is installed
+  homebrew:
+    name: warrensbox/tap/tfswitch
+    state: latest

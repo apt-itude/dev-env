@@ -1,0 +1,13 @@
+---
+- include_tasks: install.yml
+
+- name: Ensuring Terraform binary directory exists
+  ansible.builtin.file:
+    path: "{{ tfswitch_bin_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Enabling tfswitch in ZSH
+  template:
+    src: zshrc.d/tfswitch.j2
+    dest: "{{ zshrc_dir }}/tfswitch"
