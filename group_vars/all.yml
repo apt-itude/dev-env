@@ -14,8 +14,9 @@ git_config_global:
   alias.pp: pull --prune
   alias.ri: "!f() { git rebase -i HEAD~${1:-1}; }; f"
   alias.st: status --ignore-submodules=dirty
-  alias.sync: "!git pp && git tidy"
+  alias.sync: "!git pp && git wt-tidy && git tidy"
   alias.tidy: '!git branch --format ''%(refname:short) %(upstream:track)'' | awk ''$2 == "[gone]" { print $1}'' | xargs -r git branch -D'
+  alias.wt-tidy: '!git fetch --prune && git worktree list --porcelain | awk ''/^worktree/{wt=$2} /^branch/{print wt, $2}'' | while read path branch; do branch=${branch#refs/heads/}; [ "$path" = "$(git rev-parse --show-toplevel)" ] && continue; git show-ref --verify --quiet refs/remotes/origin/$branch || (git worktree remove --force $path && git branch -D $branch); done'
 
 git_ignore_patterns_global:
   - ".DS_Store"
