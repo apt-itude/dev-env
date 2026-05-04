@@ -1,6 +1,8 @@
 git_config_global:
   user.email: alex.thompson@semgrep.com
   commit.gpgsign: "true"
+  gpg.format: "ssh"
+  user.signingkey: ~/.ssh/id_rsa.pub
   rerere.enabled: "true"
 
 zsh_functions:
