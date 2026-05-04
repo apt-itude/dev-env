@@ -39,6 +39,7 @@ git_ignore_patterns_global:
   - ".pytest_cache"
   - "node_modules"
   - ".direnv/"
+  - ".claude/settings.local.json"
 
 zplug_packages:
   romkatv/powerlevel10k:
