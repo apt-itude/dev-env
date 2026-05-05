@@ -3,3 +3,7 @@
   package:
     name: zsh
     state: latest
+
+# Must set zinit_install_script_path as fact to use later
+- include_tasks: macos/install-zinit.yml
+  when: ansible_os_family == 'Darwin'

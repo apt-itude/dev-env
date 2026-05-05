@@ -1,0 +1,62 @@
+export ZINIT_INSTALL_SCRIPT_PATH={{ zinit_install_script_path }}
+source $ZINIT_INSTALL_SCRIPT_PATH
+
+mkdir -p "${ZSH_CACHE_DIR:-$HOME/.cache/zinit}/completions"
+
+DEFAULT_USER="{{ zsh_user }}"
+
+# Variables
+{% for name, value in zsh_variables.items() %}
+export {{ name }}="{{ value }}"
+{% endfor %}
+
+# Plugins used for prompt
+{% for name, details in zinit_prompt_plugins.items() %}
+zinit ice {% if details %}{% for key, value in details.items() %}{{ key }}="{{ value }}" {% endfor %}{% endif %};
+zinit light "{{ name }}"
+{% endfor %}
+
+# Standard plugins
+{% for name, details in zinit_plugins.items() %}
+zinit ice wait lucid {% if details %}{% for key, value in details.items() %}{{ key }}="{{ value }}" {% endfor %}{% endif %};
+zinit load "{{ name }}"
+{% endfor %}
+
+# Snippets
+{% for name, details in zinit_snippets.items() %}
+zinit ice wait lucid {% if details %}{% for key, value in details.items() %}{{ key }}="{{ value }}" {% endfor %}{% endif %};
+zinit snippet "{{ name }}"
+{% endfor %}
+
+# Local snippets
+for subrc in {{ zshrc_dir }}/*(.N); do
+    [ -f "$subrc" ] && zinit ice wait lucid; zinit snippet "$subrc"
+done
+
+# Options
+{% for option in zsh_options %}
+setopt {{ option }}
+{% endfor %}
+
+# Keybindings
+{% for key, binding in zsh_keybindings.items() %}
+bindkey {{ key }} {{ binding }}
+{% endfor %}
+
+# Aliases
+{% for name, command in zsh_aliases.items() %}
+alias {{ name }}="{{ command }}"
+{% endfor %}
+
+# Functions
+{% for name, definition in zsh_functions.items() %}
+{{ definition }}
+
+{% endfor %}
+
+# Completions
+zinit wait lucid for \
+  atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+  blockf \
+    zsh-users/zsh-completions

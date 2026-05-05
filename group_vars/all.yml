@@ -41,24 +41,6 @@ git_ignore_patterns_global:
   - ".direnv/"
   - ".claude/settings.local.json"
 
-zplug_packages:
-  romkatv/powerlevel10k:
-    use: powerlevel10k.zsh-theme
-    as: theme
-  apt-itude/p10k-config:
-  zsh-users/zsh-completions:
-  zdharma/fast-syntax-highlighting:
-  peterhurford/up.zsh:
-  plugins/docker:
-    from: oh-my-zsh
-  plugins/python:
-    from: oh-my-zsh
-  plugins/poetry:
-    from: oh-my-zsh
-
-zplug_variables:
-  DEFAULT_USER: athompson
-
 zsh_aliases:
   ls: ls --color=auto
   ll: ls -lsF
@@ -89,6 +71,19 @@ zsh_variables:
   EDITOR: "subl --wait"
   KUBE_EDITOR: "subl --wait"
   PIP_REQUIRE_VIRTUALENV: "true"
+
+zinit_prompt_plugins:
+  romkatv/powerlevel10k:
+    depth: "1"
+  apt-itude/p10k-config:
+
+zinit_plugins:
+  peterhurford/up.zsh:
+
+zinit_snippets:
+  OMZP::docker:
+  OMZP::python:
+  OMZP::poetry:
 
 pyenv_versions:
   3.10.6:

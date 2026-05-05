@@ -3,8 +3,6 @@
   roles:
     - role: zsh
       tags: ["shell", "zsh"]
-    - role: zplug
-      tags: ["shell", "zsh", "zplug"]
     - role: git
       tags: ["git"]
     - role: direnv

@@ -1,0 +1,15 @@
+---
+- name: Ensure zinit is installed
+  homebrew:
+    name: zinit
+    state: latest
+
+- name: Get Homebrew prefix
+  command:
+    cmd: "brew --prefix"
+  register: brew_prefix_result
+  changed_when: False
+
+- name: Set zinit install script path
+  set_fact:
+    zinit_install_script_path: "{{ brew_prefix_result.stdout }}/opt/zinit/zinit.zsh"

@@ -14,13 +14,10 @@
     marker: "# {mark} BLOCK MANAGED BY DEV-ENV VIA ANSIBLE"
     create: true
 
-- name: Ensure files in .zshrc.d get sourced
+- name: Configure .zshrc
   blockinfile:
     path: ~/.zshrc
-    block: |
-      for subrc in {{ zshrc_dir }}/*(.N); do
-          [ -f "$subrc" ] && source "$subrc"
-      done
+    block: "{{ lookup('template', 'zshrc.j2') }}"
     insertbefore: BOF
     marker: "# {mark} BLOCK MANAGED BY DEV-ENV VIA ANSIBLE"
     create: true
@@ -33,38 +30,3 @@
   loop:
     - "{{ zshenv_dir }}"
     - "{{ zshrc_dir }}"
-
-- name: Configure ZSH aliases
-  template:
-    src: aliases.j2
-    dest: "{{ zshrc_dir }}/aliases"
-  vars:
-    aliases: "{{ zsh_aliases }}"
-
-- name: Configure ZSH functions
-  template:
-    src: functions.j2
-    dest: "{{ zshrc_dir }}/functions"
-  vars:
-    functions: "{{ zsh_functions }}"
-
-- name: Configure ZSH keybindings
-  template:
-    src: keybindings.j2
-    dest: "{{ zshrc_dir }}/keybindings"
-  vars:
-    keybindings: "{{ zsh_keybindings }}"
-
-- name: Configure ZSH options
-  template:
-    src: options.j2
-    dest: "{{ zshrc_dir }}/options"
-  vars:
-    options: "{{ zsh_options }}"
-
-- name: Configure ZSH variables
-  template:
-    src: variables.j2
-    dest: "{{ zshrc_dir }}/variables"
-  vars:
-    variables: "{{ zsh_variables }}"
