@@ -18,6 +18,11 @@
     - role: rbenv
       tags: ["rbenv"]
 
+- hosts: node
+  roles:
+    - role: nvm
+      tags: ["nvm"]
+
 - hosts: go
   roles:
     - role: go

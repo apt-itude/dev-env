@@ -68,6 +68,11 @@ zsh_functions:
 zsh_variables:
   AWS_PROFILE: engineer
 
+nvm_versions:
+  18.17.0:
+  20.19.5:
+    global: true
+
 homebrew_taps:
   semgrep/infra:
     url: git@github.com:semgrep/homebrew-infra.git

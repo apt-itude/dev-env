@@ -1,0 +1,15 @@
+---
+- name: Ensuring nvm is installed
+  homebrew:
+    name: nvm
+    state: latest
+
+- name: Get Homebrew prefix
+  command:
+    cmd: "brew --prefix"
+  register: brew_prefix_result
+  changed_when: False
+
+- name: Set nvm install path
+  set_fact:
+    nvm_install_path: "{{ brew_prefix_result.stdout }}/opt/nvm"
