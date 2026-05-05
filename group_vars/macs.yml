@@ -5,6 +5,8 @@ git_config_global:
   difftool.vscode.cmd: code --new-window --wait --diff "$LOCAL" "$REMOTE"
   merge.tool: vscode
   mergetool.vscode.cmd: code --new-window --wait --merge "$LOCAL" "$REMOTE" "$BASE" "$MERGED"
+  mergetool.vscode.trustExitCode: true
+  mergetool.keepBackup: false
 
 iterm2_profiles_repo: https://github.com/apt-itude/iterm2-profiles.git
 
