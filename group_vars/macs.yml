@@ -9,22 +9,20 @@ git_config_global:
 
 iterm2_profiles_repo: https://github.com/apt-itude/iterm2-profiles.git
 
-homebrew_taps:
-  homebrew/cask-fonts:
-
 homebrew_formulae:
   coreutils:
   fff:
   gh:
+  homeport/tap/dyff:
   htop:
+  k9s:
   poetry:
   watch:
   wget:
+  yq:
 
 homebrew_casks:
   1password:
-  # This is Alfred 5 now and we don't have a license for that
-  #  alfred:
   amethyst:
   arc:
   flux:
