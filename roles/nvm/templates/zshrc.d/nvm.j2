@@ -1,0 +1,3 @@
+export NVM_DIR="{{ nvm_dir }}"
+[ -s "{{ nvm_install_path }}/nvm.sh" ] && \. "{{ nvm_install_path }}/nvm.sh"  # This loads nvm
+[ -s "{{ nvm_install_path }}/etc/bash_completion.d/nvm" ] && \. "{{ nvm_install_path }}/etc/bash_completion.d/nvm"  # This loads nvm bash_completion

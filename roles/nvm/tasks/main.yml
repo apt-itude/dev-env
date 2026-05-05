@@ -1,0 +1,18 @@
+---
+- include_tasks: install.yml
+
+- name: Installing node versions
+  command: bash -c ". {{ nvm_install_path }}/nvm.sh && nvm install {{ item.version }}"
+  args:
+    creates: "{{ nvm_dir }}/versions/node/v{{ item.version }}"
+  loop: "{{ nvm_versions | dict2items(key_name='version', value_name='config') }}"
+
+- name: Setting default node version
+  command: bash -c ". {{ nvm_install_path }}/nvm.sh && nvm alias default {{ item.version }}"
+  loop: "{{ nvm_versions | dict2items(key_name='version', value_name='config') | rejectattr('config', 'none') | selectattr('config.global', 'equalto', true) }}"
+  changed_when: false
+
+- name: Enabling nvm in ZSH
+  template:
+    src: zshrc.d/nvm.j2
+    dest: "{{ zshrc_dir }}/nvm"
