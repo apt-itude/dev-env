@@ -47,6 +47,7 @@ zsh_aliases:
   la: ls -lsaF
   grep: grep --color=auto
   cl: clear
+  zup: zinit update --all
 
 zsh_functions:
   subdiff: |
