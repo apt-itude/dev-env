@@ -1,6 +1,6 @@
 git_config_global:
   # Diff and merge tools
-  core.editor: code --new-window --wait
+  core.editor: subl -n --wait
   diff.tool: vscode
   difftool.vscode.cmd: code --new-window --wait --diff "$LOCAL" "$REMOTE"
   merge.tool: vscode

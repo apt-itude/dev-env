@@ -69,8 +69,8 @@ zsh_variables:
   HISTFILE: "${HOME}/.zhistory"
   HISTSIZE: 10000
   SAVEHIST: 10000
-  EDITOR: "subl --wait"
-  KUBE_EDITOR: "subl --wait"
+  EDITOR: "subl -n --wait"
+  KUBE_EDITOR: "subl -n --wait"
   PIP_REQUIRE_VIRTUALENV: "true"
 
 zinit_prompt_plugins:
