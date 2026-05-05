@@ -69,19 +69,28 @@ zsh_variables:
   AWS_PROFILE: engineer
 
 homebrew_taps:
-  returntocorp/infra:
-    url: git@github.com:returntocorp/homebrew-infra.git
+  semgrep/infra:
+    url: git@github.com:semgrep/homebrew-infra.git
 
 homebrew_formulae:
+  argocd:
   awscli:
-  homeport/tap/dyff:
-  Noovolari/brew/leapp-cli-darwin-arm64:
-  okta-aws-cli:
-  returntocorp/infra/kubectl:
-  returntocorp/infra/kustomize:
+  cilium-cli:
+  helm:
+  hubble:
+  linkerd:
+  thanos:
   withgraphite/tap/graphite:
 
 homebrew_casks:
-  aws-vpn-client-semgrep:
   orbstack:
+  semgrep/infra/aws-vpn-client-semgrep:
   session-manager-plugin:
+
+  # Override defaults - managed by device manager
+  1password:
+    state: absent
+  google-chrome:
+    state: absent
+  notion:
+    state: absent
