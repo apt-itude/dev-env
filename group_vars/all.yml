@@ -73,6 +73,24 @@ zsh_functions:
       fi
     }
 
+  gsw: |
+    gsw() {
+      branch="${1}"
+      worktree=$(git worktree list --porcelain \
+        | awk -v branch="refs/heads/${branch}" '
+            /^worktree / { path = $2 }
+            /^branch /   { if ($2 == branch) print path }
+          ' \
+        | head -1)
+
+      if [ -n "$worktree" ]; then
+        echo "Switching to worktree: $worktree"
+        cd "$worktree"
+      else
+        git switch "$branch"
+      fi
+    }
+
 zsh_keybindings:
   "\\^U": backward-kill-line
 
