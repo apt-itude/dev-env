@@ -85,7 +85,6 @@ homebrew_formulae:
   hubble:
   linkerd:
   thanos:
-  withgraphite/tap/graphite:
 
 homebrew_casks:
   orbstack:
