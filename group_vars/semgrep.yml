@@ -85,11 +85,14 @@ homebrew_formulae:
   hubble:
   linkerd:
   thanos:
+  ykman:
 
 homebrew_casks:
+  akuity:
   orbstack:
   semgrep/infra/aws-vpn-client-semgrep:
   session-manager-plugin:
+  warrensbox/tap/tfswitch:
 
   # Override defaults - managed by device manager
   1password:
