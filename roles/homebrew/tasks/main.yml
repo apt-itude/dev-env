@@ -10,6 +10,14 @@
     url: "{{ item.config.url | default(omit) }}"
   loop: "{{ homebrew_taps | dict2items(key_name='name', value_name='config') }}"
 
+- name: Trust Third-Party Taps
+  ansible.builtin.command:
+    cmd: "brew trust --tap {{ item.name }}"
+  loop: "{{ homebrew_taps | dict2items(key_name='name', value_name='config') }}"
+  when: "(item.config.state | default('present')) == 'present'"
+  register: trust_tap
+  changed_when: "trust_tap.stdout.startswith('Trusted ')"
+
 - name: Trust Third-Party Formulae
   ansible.builtin.command:
     cmd: "brew trust --formula {{ item.name }}"
