@@ -1,0 +1,5 @@
+---
+- name: Ensuring worktrunk is installed
+  homebrew:
+    name: worktrunk
+    state: latest

@@ -1,0 +1,7 @@
+---
+- include_tasks: install.yml
+
+- name: Enabling worktrunk in ZSH
+  template:
+    src: zshrc.d/worktrunk.j2
+    dest: "{{ zshrc_dir }}/worktrunk"

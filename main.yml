@@ -7,6 +7,8 @@
       tags: ["git"]
     - role: direnv
       tags: ["direnv"]
+    - role: worktrunk
+      tags: ["worktrunk"]
 
 - hosts: python
   roles:
