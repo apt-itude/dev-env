@@ -6,6 +6,7 @@ mkdir -p "${ZSH_CACHE_DIR:-$HOME/.cache/zinit}/completions"
 DEFAULT_USER="{{ zsh_user }}"
 
 # Variables
+export PATH="{{ zsh_path_entries | join(':') }}:${PATH}"
 {% for name, value in zsh_variables.items() %}
 export {{ name }}="{{ value }}"
 {% endfor %}

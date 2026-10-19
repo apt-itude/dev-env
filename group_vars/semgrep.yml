@@ -65,6 +65,10 @@ zsh_functions:
         kubectl drain --ignore-daemonsets --delete-emptydir-data "$@"
     }
 
+zsh_path_entries:
+  - ${HOME}/.bin
+  - ${HOME}/.local/bin
+
 zsh_variables:
   AWS_PROFILE: engineer
 

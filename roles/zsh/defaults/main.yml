@@ -7,6 +7,7 @@ zsh_aliases: {}
 zsh_functions: {}
 zsh_keybindings: {}
 zsh_options: []
+zsh_path_entries: []
 zsh_variables: {}
 zinit_prompt_plugins: {}
 zinit_plugins: {}
