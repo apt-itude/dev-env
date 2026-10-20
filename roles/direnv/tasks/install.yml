@@ -1,3 +1,12 @@
 ---
-- include_tasks: macos/install.yml
-  when: ansible_os_family == 'Darwin'
+- name: Refresh package cache for Debian/Ubuntu systems
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+  when: ansible_os_family == "Debian"
+
+- name: Ensuring direnv is installed
+  ansible.builtin.package:
+    name: direnv
+    state: latest
+  become: "{{ true if ansible_os_family != 'Darwin' else false }}"

@@ -1,0 +1,15 @@
+---
+- name: Create zinit home directory
+  ansible.builtin.file:
+    path: "{{ zinit_home | dirname }}"
+    state: directory
+    mode: 0755
+
+- name: Clone zinit
+  ansible.builtin.git:
+    repo: https://github.com/zdharma-continuum/zinit.git
+    dest: "{{ zinit_home }}"
+
+- name: Set zinit install script path
+  set_fact:
+    zinit_install_script_path: "{{ zinit_home }}/zinit.zsh"

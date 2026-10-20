@@ -1,9 +1,20 @@
 ---
+- name: Refresh package cache for Debian/Ubuntu systems
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+  when: ansible_os_family == "Debian"
+
 - name: Install ZSH
-  package:
+  ansible.builtin.package:
     name: zsh
     state: latest
+  become: "{{ true if ansible_os_family != 'Darwin' else false }}"
 
 # Must set zinit_install_script_path as fact to use later
 - include_tasks: macos/install-zinit.yml
   when: ansible_os_family == 'Darwin'
+
+# Must set zinit_install_script_path as fact to use later
+- include_tasks: generic/install-zinit.yml
+  when: ansible_os_family != 'Darwin'
