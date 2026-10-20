@@ -1,0 +1,65 @@
+---
+# Claude Code reads neither ~/.agents nor a global AGENTS.md, but it loads ~/.claude/rules/*.md and
+# ~/.claude/skills/* natively and follows symlinks in both. Links are per-entry so that rules and
+# skills managed outside dev-env can coexist in the same directories.
+- name: Creating Claude Code config directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ agents_claude_home }}"
+    - "{{ agents_claude_home }}/rules"
+    - "{{ agents_claude_home }}/skills"
+
+- name: Linking Claude Code user instructions to shared AGENTS.md
+  file:
+    src: "{{ agents_home }}/AGENTS.md"
+    dest: "{{ agents_claude_home }}/CLAUDE.md"
+    state: link
+    force: true
+
+- name: Linking shared rules into Claude Code
+  file:
+    src: "{{ agents_home }}/rules/{{ item }}"
+    dest: "{{ agents_claude_home }}/rules/{{ item }}"
+    state: link
+    force: true
+  loop: "{{ agents_rule_names }}"
+
+- name: Linking shared skills into Claude Code
+  file:
+    src: "{{ agents_home }}/skills/{{ item }}"
+    dest: "{{ agents_claude_home }}/skills/{{ item }}"
+    state: link
+    force: true
+  loop: "{{ agents_skill_names }}"
+
+- name: Finding Claude Code rule and skill links
+  find:
+    paths:
+      - "{{ agents_claude_home }}/rules"
+      - "{{ agents_claude_home }}/skills"
+    file_type: link
+  register: agents_claude_links
+
+- name: Resolving Claude Code rule and skill links
+  stat:
+    path: "{{ item.path }}"
+    follow: false
+    get_checksum: false
+  loop: "{{ agents_claude_links.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  register: agents_claude_link_stats
+
+- name: Removing Claude Code links to shared rules and skills no longer managed by dev-env
+  file:
+    path: "{{ item.stat.path }}"
+    state: absent
+  loop: "{{ agents_claude_link_stats.results }}"
+  loop_control:
+    label: "{{ item.stat.path }}"
+  when:
+    - item.stat.lnk_target.startswith(agents_home ~ '/')
+    - (item.stat.path | basename) not in (agents_rule_names + agents_skill_names)

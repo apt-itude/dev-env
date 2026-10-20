@@ -1,0 +1,45 @@
+---
+# OpenCode reads skills from ~/.agents/skills natively and loads extra rule files through the
+# `instructions` globs in its global config.
+- name: Creating OpenCode config directory
+  file:
+    path: "{{ agents_opencode_home }}"
+    state: directory
+    mode: "0755"
+
+- name: Linking OpenCode global instructions to shared AGENTS.md
+  file:
+    src: "{{ agents_home }}/AGENTS.md"
+    dest: "{{ agents_opencode_home }}/AGENTS.md"
+    state: link
+    force: true
+
+- name: Checking for existing OpenCode config
+  stat:
+    path: "{{ agents_opencode_home }}/opencode.json"
+  register: agents_opencode_config_stat
+
+- name: Reading existing OpenCode config
+  slurp:
+    src: "{{ agents_opencode_home }}/opencode.json"
+  register: agents_opencode_config_raw
+  when: agents_opencode_config_stat.stat.exists
+
+# Merges into any existing config so settings managed outside dev-env are preserved.
+- name: Configuring OpenCode to load shared rules
+  copy:
+    content: "{{ agents_opencode_config | to_nice_json(indent=2) }}\n"
+    dest: "{{ agents_opencode_home }}/opencode.json"
+    mode: "0644"
+  vars:
+    agents_opencode_config_current: >-
+      {{ (agents_opencode_config_raw.content | b64decode | from_json)
+         if agents_opencode_config_stat.stat.exists else {} }}
+    agents_opencode_instructions: "{{ agents_opencode_config_current.instructions | default([]) }}"
+    agents_opencode_rules_glob: "{{ agents_home }}/rules/*.md"
+    agents_opencode_config: >-
+      {{ {'$schema': 'https://opencode.ai/config.json'}
+         | combine(agents_opencode_config_current)
+         | combine({'instructions': agents_opencode_instructions
+                                    + ([agents_opencode_rules_glob]
+                                       | difference(agents_opencode_instructions))}) }}

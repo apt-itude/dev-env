@@ -1,0 +1,7 @@
+---
+# ~/.agents is the single source of truth; each tool is pointed at it using its native discovery
+# paths where possible and a compatibility shim (symlink or generated file) where not.
+- include_tasks: shared.yml
+- include_tasks: claude.yml
+- include_tasks: codex.yml
+- include_tasks: opencode.yml

@@ -1,0 +1,5 @@
+---
+agents_home: "{{ ansible_env.HOME }}/.agents"
+agents_claude_home: "{{ ansible_env.HOME }}/.claude"
+agents_codex_home: "{{ ansible_env.HOME }}/.codex"
+agents_opencode_home: "{{ ansible_env.HOME }}/.config/opencode"
