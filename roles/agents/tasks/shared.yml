@@ -1,0 +1,62 @@
+---
+- name: Finding skills managed by dev-env
+  find:
+    paths: "{{ role_path }}/files/skills"
+    file_type: directory
+  delegate_to: localhost
+  become: false
+  register: agents_skill_dirs
+
+- name: Creating shared agent config directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ agents_home }}"
+    - "{{ agents_home }}/rules"
+    - "{{ agents_home }}/skills"
+
+- name: Installing shared agent instructions
+  copy:
+    src: AGENTS.md
+    dest: "{{ agents_home }}/AGENTS.md"
+    mode: "0644"
+
+- name: Installing shared agent rules
+  copy:
+    src: "{{ item }}"
+    dest: "{{ agents_home }}/rules/{{ item | basename }}"
+    mode: "0644"
+  loop: "{{ agents_rule_files }}"
+  loop_control:
+    label: "{{ item | basename }}"
+
+- name: Installing shared agent skills
+  copy:
+    src: "skills/{{ item }}"
+    dest: "{{ agents_home }}/skills/"
+  loop: "{{ agents_skill_names }}"
+
+# ~/.agents/rules and ~/.agents/skills are fully managed by this role, so anything not in the role
+# is a leftover from a removed rule or skill and must not keep loading into agents.
+- name: Finding installed shared rules and skills
+  find:
+    paths: "{{ agents_home }}/{{ item }}"
+    file_type: any
+    hidden: true
+  loop:
+    - rules
+    - skills
+  register: agents_installed
+
+- name: Removing shared rules and skills no longer managed by dev-env
+  file:
+    path: "{{ item.1.path }}"
+    state: absent
+  loop: "{{ agents_installed.results | subelements('files') }}"
+  loop_control:
+    label: "{{ item.1.path }}"
+  when: >-
+    (item.1.path | basename)
+    not in (agents_rule_names if item.0.item == 'rules' else agents_skill_names)

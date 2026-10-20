@@ -1,0 +1,14 @@
+---
+# Codex reads skills from ~/.agents/skills natively, but only a single global AGENTS.md with no
+# include mechanism, so the rules are inlined into a generated copy.
+- name: Creating Codex config directory
+  file:
+    path: "{{ agents_codex_home }}"
+    state: directory
+    mode: "0755"
+
+- name: Generating Codex global AGENTS.md
+  template:
+    src: codex/AGENTS.md.j2
+    dest: "{{ agents_codex_home }}/AGENTS.md"
+    mode: "0644"

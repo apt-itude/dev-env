@@ -1,0 +1,4 @@
+---
+agents_rule_files: "{{ query('fileglob', role_path ~ '/files/rules/*.md') | sort }}"
+agents_rule_names: "{{ agents_rule_files | map('basename') | list }}"
+agents_skill_names: "{{ agents_skill_dirs.files | map(attribute='path') | map('basename') | sort }}"
