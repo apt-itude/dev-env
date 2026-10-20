@@ -50,11 +50,6 @@ zsh_aliases:
   zup: zinit update --all
 
 zsh_functions:
-  subdiff: |
-    subdiff() {
-        subl -n --wait "$1" "$2" --command "sublimerge_diff_views {\"left_read_only\": true, \"right_read_only\": true}"
-    }
-
   up: |
     up() { # Go up X directories (default 1)
       if [[ "$#" -ne 1 ]]; then
@@ -105,8 +100,6 @@ zsh_variables:
   HISTFILE: "${HOME}/.zhistory"
   HISTSIZE: 10000
   SAVEHIST: 10000
-  EDITOR: "subl -n --wait"
-  KUBE_EDITOR: "subl -n --wait"
   PIP_REQUIRE_VIRTUALENV: "true"
 
 zinit_prompt_plugins:

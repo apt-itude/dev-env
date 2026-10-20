@@ -1,0 +1,107 @@
+git_config_global:
+  user.email: alex.thompson@semgrep.com
+  commit.gpgsign: "true"
+  gpg.format: "ssh"
+  user.signingkey: ~/.ssh/id_rsa.pub
+  rerere.enabled: "true"
+
+zsh_functions:
+  ckc-old: |
+    function ckc-old() { # change kubernetes cluster
+      if [ -z "$1" ]; then
+        echo "Usage: ckc [dev|dev2|staging|prod]"
+        echo "Current context: `kubectl config current-context`"
+        return 1
+      else
+        case "$1" in
+          dev2) aws eks --region us-west-2 update-kubeconfig --name dev2-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/dev2-semgrep-app-cluster-kubernetes-apply;;
+          staging) aws eks --region us-west-2 update-kubeconfig --name staging-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/staging-semgrep-app-cluster-kubernetes-apply;;
+          prod) aws eks --region us-west-2 update-kubeconfig --name prod-semgrep-app-cluster --role-arn arn:aws:iam::$(op read op://Semgrep/aws-account-id/credential):role/prod-semgrep-app-cluster-kubernetes-apply;;
+          *)
+            echo "unknown cluster '$1'"
+                return 1 ;;
+        esac
+      fi
+    }
+  login-aws: |
+    function login-aws() {
+      aws sso login --sso-session semgrep
+    }
+  login-ecr: |
+    function login-ecr { # shorthand to login to ECR repo
+        REGION=${1:-us-west-2}
+        aws ecr get-login-password --region "${REGION}" | docker login --username AWS --password-stdin "$(op read op://Semgrep/aws-account-id/credential).dkr.ecr.${REGION}.amazonaws.com"
+    }
+  k: |
+    function k { # shorthand for kubectl
+        kubectl "$@"
+    }
+  ky: |
+    function ky { # shorthand for kubectl ... -o yaml
+        kubectl "$@" -o yaml
+    }
+  kw: |
+    function kw { # shorthand for kubectl ... -o wide
+        kubectl "$@" -o wide
+    }
+  ka: |
+    function ka { # shorthand for kubectl ... --all-namespaces
+        kubectl "$@" --all-namespaces
+    }
+  kaw: |
+    function kaw { # shorthand for kubectl ... -o wide --all-namespaces
+        kubectl "$@" -o wide --all-namespaces
+    }
+  knp: |
+    function knp {
+        kubectl get pods --all-namespaces --field-selector="spec.nodeName=$1" "${@:2}"
+    }
+  kpn: |
+    function kpn {
+        kubectl get pod -o jsonpath="{.spec.nodeName}{'\n'}" "$@"
+    }
+  kdrain: |
+    function kdrain {
+        kubectl drain --ignore-daemonsets --delete-emptydir-data "$@"
+    }
+
+zsh_path_entries:
+  - ${HOME}/.bin
+  - ${HOME}/.local/bin
+
+zsh_variables:
+  AWS_PROFILE: engineer
+
+nvm_versions:
+  18.17.0:
+  20.19.5:
+    global: true
+
+homebrew_taps:
+  semgrep/infra:
+    url: git@github.com:semgrep/homebrew-infra.git
+
+homebrew_formulae:
+  argocd:
+  awscli:
+  cilium-cli:
+  helm:
+  hubble:
+  linkerd:
+  thanos:
+  ykman:
+
+homebrew_casks:
+  akuity:
+  orbstack:
+  semgrep/infra/aws-vpn-client-semgrep:
+  session-manager-plugin:
+  warrensbox/tap/tfswitch:
+
+  # Override defaults - managed by device manager
+  1password:
+    state: absent
+  google-chrome:
+    state: absent
+  notion:
+    state: absent

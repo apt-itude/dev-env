@@ -7,8 +7,6 @@
       tags: ["git"]
     - role: direnv
       tags: ["direnv"]
-    - role: worktrunk
-      tags: ["worktrunk"]
 
 - hosts: python
   roles:
@@ -43,3 +41,5 @@
       tags: ["macos-defaults", "defaults"]
     - role: iterm2
       tags: ["iterm2"]
+    - role: worktrunk
+      tags: ["worktrunk"]

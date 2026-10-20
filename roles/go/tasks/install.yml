@@ -1,5 +1,12 @@
 ---
+- name: Refresh package cache for Debian/Ubuntu systems
+  ansible.builtin.apt:
+    update_cache: true
+  become: true
+  when: ansible_os_family == "Debian"
+
 - name: Ensure go is installed
-  package:
+  ansible.builtin.package:
     name: go
     state: present
+  become: "{{ true if ansible_os_family != 'Darwin' else false }}"
