@@ -43,5 +43,7 @@
       tags: ["macos-defaults", "defaults"]
     - role: iterm2
       tags: ["iterm2"]
+    - role: ghostty
+      tags: ["ghostty"]
     - role: worktrunk
       tags: ["worktrunk"]
