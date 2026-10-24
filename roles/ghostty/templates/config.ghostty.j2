@@ -1,0 +1,5 @@
+{% for key, value in ghostty_config.items() %}
+{% for item in (value if value is sequence and value is not string else [value]) %}
+{{ key }} = {{ item | ternary('true', 'false') if item is boolean else item }}
+{% endfor %}
+{% endfor %}

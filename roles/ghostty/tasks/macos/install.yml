@@ -1,0 +1,5 @@
+---
+- name: Ensuring Ghostty is installed
+  homebrew_cask:
+    name: ghostty
+    state: present

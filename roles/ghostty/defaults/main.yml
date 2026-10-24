@@ -1,0 +1,5 @@
+---
+ghostty_config_dir: "{{ ansible_env.XDG_CONFIG_HOME | default(ansible_env.HOME ~ '/.config') }}/ghostty"
+# Ghostty settings keyed by option name. A list value emits the option once per item, which is how
+# repeatable options such as keybind are expressed.
+ghostty_config: {}

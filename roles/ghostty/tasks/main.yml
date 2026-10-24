@@ -1,0 +1,14 @@
+---
+- include_tasks: install.yml
+
+- name: Ensuring Ghostty config directory exists
+  file:
+    path: "{{ ghostty_config_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Ensuring Ghostty configuration is applied
+  template:
+    src: config.ghostty.j2
+    dest: "{{ ghostty_config_dir }}/config.ghostty"
+    mode: "0644"
