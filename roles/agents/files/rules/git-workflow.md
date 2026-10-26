@@ -31,3 +31,4 @@
   ```
 
   Add the footer once, only to content you author; never strip or duplicate a footer that's already present.
+  - skip this footer for any content where your harness already instructs you to append its own attribution line (e.g. Claude Code's "🤖 Generated with Claude Code" on PR descriptions) — use the harness's line alone so there's only one attribution. Still add this footer to content the harness doesn't attribute (e.g. GitHub comments).
