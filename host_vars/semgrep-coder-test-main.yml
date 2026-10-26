@@ -1,2 +1,0 @@
-ansible_host: main.test.alexthompson.coder
-ansible_connection: ssh
