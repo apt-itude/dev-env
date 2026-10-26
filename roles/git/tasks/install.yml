@@ -1,5 +1,6 @@
 ---
-- name: Ensuring git is installed
-  package:
+- name: Ensure git is installed
+  ansible.builtin.package:
     name: git
     state: latest
+  become: "{{ true if ansible_os_family != 'Darwin' else false }}"
