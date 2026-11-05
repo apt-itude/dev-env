@@ -1,0 +1,65 @@
+---
+- include_tasks: install.yml
+
+- name: Ensuring k9s config directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+  loop:
+    - "{{ k9s_config_dir }}"
+    - "{{ k9s_config_dir }}/plugins"
+    - "{{ k9s_config_dir }}/skins"
+
+- name: Ensuring k9s configuration is applied
+  copy:
+    content: "{{ item.content | to_nice_yaml(indent=2, sort_keys=False, width=1000) }}"
+    dest: "{{ k9s_config_dir }}/{{ item.file }}"
+    mode: "0644"
+  loop:
+    - file: config.yaml
+      content: { k9s: "{{ k9s_config }}" }
+    - file: aliases.yaml
+      content: { aliases: "{{ k9s_aliases }}" }
+    - file: views.yaml
+      content: { views: "{{ k9s_views }}" }
+  loop_control:
+    label: "{{ item.file }}"
+
+- name: Ensuring k9s plugins are applied
+  copy:
+    content: "{{ {item.key: item.value} | to_nice_yaml(indent=2, sort_keys=False, width=1000) }}"
+    dest: "{{ k9s_config_dir }}/plugins/{{ item.key }}.yaml"
+    mode: "0644"
+  loop: "{{ k9s_plugins | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
+
+- name: Ensuring k9s skins are applied
+  copy:
+    content: "{{ item.value | to_nice_yaml(indent=2, sort_keys=False, width=1000) }}"
+    dest: "{{ k9s_config_dir }}/skins/{{ item.key }}.yaml"
+    mode: "0644"
+  loop: "{{ k9s_skins | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
+
+# The plugins and skins directories are owned by the role: any file whose name isn't a key in
+# k9s_plugins / k9s_skins is removed so that deleting an entry from vars deletes it from k9s.
+- name: Finding existing k9s plugin and skin files
+  find:
+    paths: "{{ k9s_config_dir }}/{{ item }}"
+    patterns: ["*.yaml", "*.yml"]
+  loop: [plugins, skins]
+  register: k9s_existing_files
+
+- name: Removing unmanaged k9s plugin and skin files
+  file:
+    path: "{{ item.1.path }}"
+    state: absent
+  loop: "{{ k9s_existing_files.results | subelements('files') }}"
+  loop_control:
+    label: "{{ item.1.path }}"
+  when: >-
+    (item.1.path | basename | splitext | first)
+    not in (k9s_plugins if item.0.item == 'plugins' else k9s_skins)

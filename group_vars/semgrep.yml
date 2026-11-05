@@ -1,0 +1,61 @@
+k9s_aliases:
+  nodes-by-pool: v1/nodes
+  workflows-with-template: argoproj.io/v1alpha1/workflows
+  argocd-clusters: v1/secrets argocd argocd.argoproj.io/secret-type=cluster
+
+k9s_plugins:
+  observe-flows:
+    shortCut: Shift-H
+    description: Observe Flows with Hubble
+    scopes:
+      - pods
+    command: hubble
+    args:
+      - observe
+      - -f
+      - --namespace
+      - $NAMESPACE
+      - --pod
+      - $NAME
+    background: false
+    confirm: false
+
+k9s_views:
+  workflows-with-template:
+    columns:
+      - NAME
+      - TEMPLATE:.spec.workflowTemplateRef.name
+      - STATUS
+      - AGE
+  argoproj.io/v1alpha1/applications:
+    columns:
+      - NAME
+      - SYNC STATUS
+      - HEALTH STATUS
+      - AUTOSYNC:.spec.syncPolicy.automated
+  nodes-by-pool:
+    sortColumn: AGE:desc
+    columns:
+      - NAME
+      - STATUS
+      - EKS-GROUP:.metadata.labels.eks\.amazonaws\.com/nodegroup
+      - KARPENTER-POOL:.metadata.labels.karpenter\.sh/nodepool
+      - TYPE:.metadata.labels.node\.kubernetes\.io/instance-type
+      - VERSION
+      - AGE
+      - ROLE|H
+  argocd-clusters:
+    columns:
+      - NAME
+      - ENV:.metadata.labels.semgrep\.dev/env
+      - TENANT:.metadata.labels.semgrep\.dev/tenant
+      - REGION:.metadata.labels.semgrep\.dev/region
+      - ROLE:.metadata.labels.semgrep\.dev/role
+      - INSTANCE:.metadata.labels.semgrep\.dev/instance
+      - K8S-CLUSTER:.metadata.labels.semgrep\.dev/k8s_cluster_name
+      - MGMT:.metadata.labels.semgrep\.dev/management-cluster
+      - SMS-CANARY:.metadata.labels.semgrep\.dev/sms-canary
+      - FUSE-FD-CSI:.metadata.labels.semgrep\.dev/fuse-fd-csi
+      - AGE
+      - TYPE|H
+      - DATA|H

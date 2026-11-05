@@ -47,3 +47,5 @@
       tags: ["ghostty"]
     - role: worktrunk
       tags: ["worktrunk"]
+    - role: k9s
+      tags: ["k9s"]

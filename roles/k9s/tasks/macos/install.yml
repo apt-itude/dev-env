@@ -1,0 +1,5 @@
+---
+- name: Ensuring k9s is installed
+  homebrew:
+    name: k9s
+    state: present

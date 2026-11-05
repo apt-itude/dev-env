@@ -119,3 +119,276 @@ pyenv_versions:
 rbenv_versions:
   2.7.6:
     global: true
+
+k9s_config:
+  liveViewAutoRefresh: false
+  screenDumpDir: "{{ k9s_config_dir }}/screen-dumps"
+  refreshRate: 2
+  maxConnRetry: 5
+  readOnly: false
+  noExitOnCtrlC: false
+  ui:
+    enableMouse: false
+    headless: false
+    logoless: true
+    crumbsless: false
+    reactive: true
+    noIcons: false
+    defaultsToFullScreen: false
+    skin: solarized-dark
+  skipLatestRevCheck: false
+  disablePodCounting: false
+  shellPod:
+    image: busybox:1.35.0
+    namespace: default
+    limits:
+      cpu: 100m
+      memory: 100Mi
+  imageScans:
+    enable: false
+    exclusions:
+      namespaces: []
+      labels: {}
+  logger:
+    tail: 100
+    buffer: 5000
+    sinceSeconds: -1
+    textWrap: false
+    showTime: false
+  thresholds:
+    cpu:
+      critical: 90
+      warn: 70
+    memory:
+      critical: 90
+      warn: 70
+
+k9s_aliases:
+  dp: deployments
+  sec: v1/secrets
+  jo: jobs
+  cr: clusterroles
+  crb: clusterrolebindings
+  ro: roles
+  rb: rolebindings
+  np: networkpolicies
+
+k9s_plugins:
+  watch-events:
+    shortCut: Shift-E
+    confirm: false
+    description: Watch Events
+    scopes:
+      - all
+    command: sh
+    background: false
+    args:
+      - -c
+      - "kubectl events --context $CONTEXT --namespace $NAMESPACE --for $RESOURCE_NAME.$RESOURCE_GROUP/$NAME --watch"
+
+k9s_skins:
+  solarized-dark:
+    # https://ethanschoonover.com/solarized/#the-values
+    base03: &dark_background "#002b36"
+    base02: &dark_backgroundHighlights "#073642"
+    base01: &dark_secondary "#586e75"
+    base00: &dark_base00 "#657b83"
+    base0: &dark_primary "#839496"
+    base1: &dark_emphasized "#93a1a1"
+    base2: &dark_base2 "#eee8d5"
+    base3: &dark_base3 "#fdf6e3"
+    yellow: &dark_yellow "#b58900"
+    orange: &dark_orange "#cb4b16"
+    red: &dark_red "#dc322f"
+    magenta: &dark_magenta "#d33682"
+    violet: &dark_violet "#6c71c4"
+    blue: &dark_blue "#268bd2"
+    cyan: &dark_cyan "#2aa198"
+    green: &dark_green "#859900"
+
+    k9s:
+      body:
+        fgColor: *dark_primary
+        bgColor: *dark_background
+        logoColor: *dark_magenta
+      prompt:
+        fgColor: *dark_primary
+        bgColor: *dark_background
+        suggestColor: *dark_secondary
+      info:
+        fgColor: *dark_blue
+        sectionColor: *dark_cyan
+      dialog:
+        fgColor: *dark_primary
+        bgColor: *dark_background
+        buttonFgColor: *dark_primary
+        buttonBgColor: *dark_magenta
+        buttonFocusFgColor: *dark_backgroundHighlights
+        buttonFocusBgColor: *dark_blue
+        labelFgColor: *dark_blue
+        fieldFgColor: *dark_magenta
+      frame:
+        border:
+          fgColor: *dark_primary
+          focusColor: *dark_backgroundHighlights
+        menu:
+          fgColor: *dark_emphasized
+          keyColor: *dark_violet
+          numKeyColor: *dark_green
+        crumbs:
+          fgColor: *dark_backgroundHighlights
+          bgColor: *dark_secondary
+          activeColor: *dark_orange
+        status:
+          newColor: *dark_blue
+          modifyColor: *dark_magenta
+          addColor: *dark_green
+          errorColor: *dark_red
+          highlightcolor: *dark_orange
+          killColor: *dark_yellow
+          completedColor: *dark_secondary
+        title:
+          fgColor: *dark_emphasized
+          bgColor: *dark_background
+          highlightColor: *dark_magenta
+          counterColor: *dark_green
+          filterColor: *dark_magenta
+      views:
+        table:
+          fgColor: *dark_primary
+          bgColor: *dark_background
+          cursorFgColor: *dark_backgroundHighlights
+          cursorBgColor: *dark_secondary
+          header:
+            fgColor: *dark_cyan
+            bgColor: *dark_backgroundHighlights
+            sorterColor: *dark_green
+        xray:
+          fgColor: *dark_primary
+          bgColor: *dark_background
+          cursorColor: *dark_backgroundHighlights
+          graphicColor: *dark_violet
+          showIcons: true
+        charts:
+          bgColor: *dark_background
+          defaultDialColors:
+            - *dark_blue
+            - *dark_red
+          defaultChartColors:
+            - *dark_blue
+            - *dark_red
+        yaml:
+          keyColor: *dark_blue
+          colonColor: *dark_emphasized
+          valueColor: *dark_primary
+        logs:
+          fgColor: *dark_primary
+          bgColor: *dark_background
+          indicator:
+            fgColor: *dark_cyan
+            bgColor: *dark_backgroundHighlights
+            toggleOnColor: *dark_green
+            toggleOffColor: *dark_emphasized
+  solarized-light:
+    # Solarized color values
+    # https://ethanschoonover.com/solarized/#the-values
+    base03: &light_base03 "#002b36"
+    base02: &light_base02 "#073642"
+    base01: &light_emphasized "#586e75"
+    base00: &light_primary "#657b83"
+    base0: &light_base0 "#839496"
+    base1: &light_secondary "#93a1a1"
+    base2: &light_backgroundHighlights "#eee8d5"
+    base3: &light_background "#fdf6e3"
+    yellow: &light_yellow "#b58900"
+    orange: &light_orange "#cb4b16"
+    red: &light_red "#dc322f"
+    magenta: &light_magenta "#d33682"
+    violet: &light_violet "#6c71c4"
+    blue: &light_blue "#268bd2"
+    cyan: &light_cyan "#2aa198"
+    green: &light_green "#859900"
+
+    k9s:
+      body:
+        fgColor: *light_primary
+        bgColor: *light_background
+        logoColor: *light_magenta
+      prompt:
+        fgColor: *light_primary
+        bgColor: *light_background
+        suggestColor: *light_secondary
+      info:
+        fgColor: *light_blue
+        sectionColor: *light_cyan
+      dialog:
+        fgColor: *light_primary
+        bgColor: *light_background
+        buttonFgColor: *light_primary
+        buttonBgColor: *light_magenta
+        buttonFocusFgColor: *light_backgroundHighlights
+        buttonFocusBgColor: *light_blue
+        labelFgColor: *light_blue
+        fieldFgColor: *light_magenta
+      frame:
+        border:
+          fgColor: *light_primary
+          focusColor: *light_backgroundHighlights
+        menu:
+          fgColor: *light_emphasized
+          keyColor: *light_violet
+          numKeyColor: *light_green
+        crumbs:
+          fgColor: *light_backgroundHighlights
+          bgColor: *light_secondary
+          activeColor: *light_orange
+        status:
+          newColor: *light_blue
+          modifyColor: *light_magenta
+          addColor: *light_green
+          errorColor: *light_red
+          highlightcolor: *light_orange
+          killColor: *light_yellow
+          completedColor: *light_secondary
+        title:
+          fgColor: *light_emphasized
+          bgColor: *light_background
+          highlightColor: *light_magenta
+          counterColor: *light_green
+          filterColor: *light_magenta
+      views:
+        table:
+          fgColor: *light_primary
+          bgColor: *light_background
+          cursorFgColor: *light_backgroundHighlights
+          cursorBgColor: *light_secondary
+          header:
+            fgColor: *light_cyan
+            bgColor: *light_backgroundHighlights
+            sorterColor: *light_green
+        xray:
+          fgColor: *light_primary
+          bgColor: *light_background
+          cursorColor: *light_backgroundHighlights
+          graphicColor: *light_violet
+          showIcons: true
+        charts:
+          bgColor: *light_background
+          defaultDialColors:
+            - *light_blue
+            - *light_red
+          defaultChartColors:
+            - *light_blue
+            - *light_red
+        yaml:
+          keyColor: *light_blue
+          colonColor: *light_emphasized
+          valueColor: *light_primary
+        logs:
+          fgColor: *light_primary
+          bgColor: *light_background
+          indicator:
+            fgColor: *light_cyan
+            bgColor: *light_backgroundHighlights
+            toggleOnColor: *light_green
+            toggleOffColor: *light_emphasized
