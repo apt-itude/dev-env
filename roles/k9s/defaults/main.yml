@@ -1,0 +1,19 @@
+---
+# Mirrors k9s's own lookup order: K9S_CONFIG_DIR, then XDG_CONFIG_HOME, then the platform default.
+k9s_config_dir: >-
+  {{ ansible_env.K9S_CONFIG_DIR | default(
+       (ansible_env.XDG_CONFIG_HOME | default(
+         ansible_env.HOME ~ ('/Library/Application Support' if ansible_os_family == 'Darwin' else '/.config')
+       )) ~ '/k9s'
+     ) }}
+# Contents of the top-level `k9s` key in config.yaml.
+k9s_config: {}
+# Alias name to resource (and optional namespace / label selector).
+k9s_aliases: {}
+# Plugin name to plugin definition; each is written to plugins/<name>.yaml.
+k9s_plugins: {}
+# Resource or alias name to view definition (columns, sortColumn).
+k9s_views: {}
+# Skin name to skin document; each is written to skins/<name>.yaml and selectable via
+# k9s_config.ui.skin.
+k9s_skins: {}
