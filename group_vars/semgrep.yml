@@ -59,3 +59,9 @@ k9s_views:
       - AGE
       - TYPE|H
       - DATA|H
+
+agents_skill_sources:
+  employee-scripts-at:
+    repo: git@github.com:semgrep/employee-scripts.git
+    path: at/claude/skills
+    version: main

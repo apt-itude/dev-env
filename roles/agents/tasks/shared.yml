@@ -16,6 +16,37 @@
     - "{{ agents_home }}"
     - "{{ agents_home }}/rules"
     - "{{ agents_home }}/skills"
+    - "{{ agents_sources_home }}"
+
+# External skills are symlinked from a clone rather than copied, so each run's pull updates them in
+# place and skill-local state (e.g. a script's virtualenv) survives between runs.
+- name: Cloning external skill sources
+  git:
+    repo: "{{ item.value.repo }}"
+    dest: "{{ agents_sources_home }}/{{ item.key }}"
+    version: "{{ item.value.version | default('HEAD') }}"
+    depth: 1
+  loop: "{{ agents_skill_sources | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
+
+- name: Finding skills in external skill sources
+  find:
+    paths: "{{ agents_sources_home }}/{{ item.key }}/{{ item.value.path }}"
+    file_type: directory
+  loop: "{{ agents_skill_sources | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
+  register: agents_external_skill_dirs
+
+- name: Checking for skill name collisions across sources
+  assert:
+    that: agents_skill_names | length == agents_skill_names | unique | length
+    fail_msg: >-
+      Skills with the same name come from more than one source:
+      {{ agents_skill_names | community.general.counter | dict2items
+         | selectattr('value', 'gt', 1) | map(attribute='key') | join(', ') }}
+    quiet: true
 
 - name: Installing shared agent instructions
   copy:
@@ -36,7 +67,15 @@
   copy:
     src: "skills/{{ item }}"
     dest: "{{ agents_home }}/skills/"
-  loop: "{{ agents_skill_names }}"
+  loop: "{{ agents_local_skill_names }}"
+
+- name: Linking external skills
+  file:
+    src: "{{ item }}"
+    dest: "{{ agents_home }}/skills/{{ item | basename }}"
+    state: link
+    force: true
+  loop: "{{ agents_external_skill_paths }}"
 
 # ~/.agents/rules and ~/.agents/skills are fully managed by this role, so anything not in the role
 # is a leftover from a removed rule or skill and must not keep loading into agents.
@@ -60,3 +99,18 @@
   when: >-
     (item.1.path | basename)
     not in (agents_rule_names if item.0.item == 'rules' else agents_skill_names)
+
+- name: Finding cloned external skill sources
+  find:
+    paths: "{{ agents_sources_home }}"
+    file_type: directory
+  register: agents_installed_sources
+
+- name: Removing external skill sources no longer configured
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ agents_installed_sources.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when: (item.path | basename) not in agents_skill_sources
