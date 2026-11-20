@@ -1,5 +1,5 @@
 ---
-zsh_user: "{{ ansible_user_id }}"
+zsh_user: "{{ ansible_facts.user_id }}"
 zsh_bin_path: /usr/bin/zsh
 zshrc_dir: ~/.zshrc.d
 zshenv_dir: ~/.zshenv.d
@@ -9,7 +9,7 @@ zsh_keybindings: {}
 zsh_options: []
 zsh_path_entries: []
 zsh_variables: {}
-zinit_home: "{{ ansible_env.HOME }}/.local/share/zinit/zinit.git"
+zinit_home: "{{ ansible_facts.env.HOME }}/.local/share/zinit/zinit.git"
 zinit_prompt_plugins: {}
 zinit_plugins: {}
 zinit_snippets: {}

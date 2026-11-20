@@ -1,9 +1,9 @@
 ---
 # Mirrors k9s's own lookup order: K9S_CONFIG_DIR, then XDG_CONFIG_HOME, then the platform default.
 k9s_config_dir: >-
-  {{ ansible_env.K9S_CONFIG_DIR | default(
-       (ansible_env.XDG_CONFIG_HOME | default(
-         ansible_env.HOME ~ ('/Library/Application Support' if ansible_os_family == 'Darwin' else '/.config')
+  {{ ansible_facts.env.K9S_CONFIG_DIR | default(
+       (ansible_facts.env.XDG_CONFIG_HOME | default(
+         ansible_facts.env.HOME ~ ('/Library/Application Support' if ansible_facts.os_family == 'Darwin' else '/.config')
        )) ~ '/k9s'
      ) }}
 # Contents of the top-level `k9s` key in config.yaml.

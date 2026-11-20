@@ -3,10 +3,10 @@
   ansible.builtin.apt:
     update_cache: true
   become: true
-  when: ansible_os_family == "Debian"
+  when: ansible_facts.os_family == "Debian"
 
 - name: Ensure go is installed
   ansible.builtin.package:
     name: go
     state: present
-  become: "{{ true if ansible_os_family != 'Darwin' else false }}"
+  become: "{{ true if ansible_facts.os_family != 'Darwin' else false }}"
