@@ -1,2 +1,2 @@
 ---
-gopath: "{{ ansible_env.HOME }}/.go"
+gopath: "{{ ansible_facts.env.HOME }}/.go"
