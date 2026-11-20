@@ -1,4 +1,11 @@
 ---
 agents_rule_files: "{{ query('fileglob', role_path ~ '/files/rules/*.md') | sort }}"
 agents_rule_names: "{{ agents_rule_files | map('basename') | list }}"
-agents_skill_names: "{{ agents_skill_dirs.files | map(attribute='path') | map('basename') | sort }}"
+agents_sources_home: "{{ agents_home }}/sources"
+agents_local_skill_names: >-
+  {{ agents_skill_dirs.files | map(attribute='path') | map('basename') | sort }}
+agents_external_skill_paths: >-
+  {{ agents_external_skill_dirs.results | map(attribute='files') | flatten
+     | map(attribute='path') | sort }}
+agents_skill_names: >-
+  {{ (agents_local_skill_names + (agents_external_skill_paths | map('basename'))) | sort }}
