@@ -20,12 +20,14 @@
 
 # External skills are symlinked from a clone rather than copied, so each run's pull updates them in
 # place and skill-local state (e.g. a script's virtualenv) survives between runs.
+# Clones are not shallow: the git module re-fetches a shallow clone at the new tip only, which
+# disconnects it from the checked-out commit and makes every upstream change look like it would
+# discard local commits.
 - name: Cloning external skill sources
   git:
     repo: "{{ item.value.repo }}"
     dest: "{{ agents_sources_home }}/{{ item.key }}"
     version: "{{ item.value.version | default('HEAD') }}"
-    depth: 1
   loop: "{{ agents_skill_sources | dict2items }}"
   loop_control:
     label: "{{ item.key }}"
